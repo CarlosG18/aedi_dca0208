@@ -1,5 +1,7 @@
 package list
 
+import "fmt"
+
 type ArrayList struct {
 	values []int
 	tam    int
@@ -71,4 +73,14 @@ func (arraylist *ArrayList) Add(value int) {
 
 func (arraylist *ArrayList) Size() int {
 	return arraylist.tam
+}
+
+func (arraylist *ArrayList) Print(){
+  fmt.Println("[ ")
+  for i := 0; i < len(arraylist.values); i++{
+    fmt.Println(arraylist.values[i])
+fmt.Println(" ")
+
+  }
+  fmt.Println("]")
 }

@@ -12,4 +12,6 @@ func main() {
     arraylist.Add(i)
   }
 
+  arraylist.Print()
+
 }
