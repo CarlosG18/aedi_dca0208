@@ -7,7 +7,6 @@ import (
 func main() {
   //testes.Teste_arraylist()
   testes.Teste_linkedlist()
-
   
 }
 

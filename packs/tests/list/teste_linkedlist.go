@@ -6,4 +6,5 @@ func Teste_linkedlist(){
   linkedlist := list.LinkedList{}
   linkedlist.Init()
   linkedlist.Add(67)
+  linkedlist.Add(89)
 }

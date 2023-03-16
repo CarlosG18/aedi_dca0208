@@ -15,16 +15,37 @@ type No struct{
 
 func (linkedlist *LinkedList) Init(){
   linkedlist.cabeca = &No{}
+  linkedlist.cabeca.value = 0
+  linkedlist.cabeca.prox = &No{}
   linkedlist.tam = 0
   linkedlist.err = ""
 }
 
 func (linkedlist *LinkedList) Add(value int){
+  aux := linkedlist.cabeca.prox
+  fmt.Println(&aux) 
+
+  if aux.prox == nil{
+    aux.value = value
+    aux.prox = &No{}
+    fmt.Print("colocou o valor")
+  }
+
+  //aux1 := aux.prox
+  //fmt.Print(&aux1)
+/*
+  if aux1 != nil{
+    fmt.Print("proximo != nil")
+  }else{
+    fmt.Print("prox == nil")
+  }
   
-  
-  linkedlist.cabeca.value = value
-  linkedlist.cabeca.prox = &No{}
-  linkedlist.tam++
+  /*for aux.prox != nil{
+    aux = aux.prox
+  }
+
+  aux.value = value
+  linkedlist.tam++*/
 }
 
 func (linkedlist *LinkedList) Remove(){
