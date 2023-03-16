@@ -17,5 +17,8 @@ func main() {
   arraylist.Remove()
   arraylist.AddOnIndex(59,2)
   arraylist.Set(1,100)
+  arraylist.AddOnIndex(89,100)
 
+  
 }
+
