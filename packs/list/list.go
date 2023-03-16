@@ -10,5 +10,5 @@ type Ilist interface{
   Double()
   Get(index int)
   Set(value int, index int)
-  Print()
+  Print(operation string)
 }

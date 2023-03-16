@@ -9,15 +9,19 @@ type ArrayList struct {
 
 func (arraylist *ArrayList) Init(capacity int) {
 	arraylist.values = make([]int, capacity)
+  arraylist.tam = 0
 }
 
 func (arraylist *ArrayList) RemoveOnIndex(index int) {
-	if index < arraylist.tam || index >= 0 {
+	if index < arraylist.tam && index >= 0 && arraylist.tam > 0{
 		for i := index; i < arraylist.tam-1; i++ {
 			arraylist.values[i] = arraylist.values[i+1]
 		}
 		arraylist.tam--
-	}
+  }else{
+    fmt.Print("index not encontry")
+  }
+  arraylist.Print("RemoveOnIndex")
 }
 
 func (arraylist *ArrayList) Remove() {
@@ -25,7 +29,7 @@ func (arraylist *ArrayList) Remove() {
 		arraylist.tam--
 	}
 	//tratamento do erro
-
+  arraylist.Print("Remove")
 }
 
 func (arraylist *ArrayList) AddOnIndex(value int, index int) {
@@ -38,6 +42,7 @@ func (arraylist *ArrayList) AddOnIndex(value int, index int) {
 	}
 	arraylist.values[index] = value
 	arraylist.tam++
+  arraylist.Print("AddOnIndex")
 }
 
 func (arraylist *ArrayList) Double() {
@@ -61,6 +66,7 @@ func (arraylist *ArrayList) Set(index int, value int) {
 	if index >= 0 && index < arraylist.tam {
 		arraylist.values[index] = value
 	}
+  arraylist.Print("Set")
 }
 
 func (arraylist *ArrayList) Add(value int) {
@@ -69,18 +75,28 @@ func (arraylist *ArrayList) Add(value int) {
 	}
 	arraylist.values[arraylist.tam] = value
 	arraylist.tam++
+  arraylist.Print("Add")
 }
 
 func (arraylist *ArrayList) Size() int {
 	return arraylist.tam
 }
 
-func (arraylist *ArrayList) Print(){
-  fmt.Println("[ ")
-  for i := 0; i < len(arraylist.values); i++{
-    fmt.Println(arraylist.values[i])
-fmt.Println(" ")
-
+func (arraylist *ArrayList) Print(operation string){
+  fmt.Println("operação = ", operation)
+if arraylist.tam > 0 {
+  fmt.Print("[")
+  for i := 0; i < arraylist.tam; i++ {
+    if i > 0 {
+      fmt.Print(",")
+    }
+    fmt.Print(arraylist.values[i])
   }
-  fmt.Println("]")
+  fmt.Print("]")
+}else{
+  fmt.Println("o vetor não possui valores")
+}
+  fmt.Println()
+  fmt.Println("tamanho do vetor = ", arraylist.Size())
+  fmt.Println()
 }
