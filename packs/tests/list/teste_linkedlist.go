@@ -5,6 +5,7 @@ import "main/packs/src/list"
 func Teste_linkedlist(){
   linkedlist := list.LinkedList{}
   linkedlist.Init()
-  linkedlist.Add(67)
-  linkedlist.Add(100)
+  for i := 0; i<10; i++{
+    linkedlist.Add(i)
+  }
 }

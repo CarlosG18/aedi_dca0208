@@ -21,8 +21,8 @@ func (linkedlist *LinkedList) Init(){
 
 func (linkedlist *LinkedList) Add(value int){
   var aux *No = linkedlist.cabeca
+  
   for aux.prox != nil {
-    aux.prox = &No{}
     aux = aux.prox
   }
   if aux.prox == nil{
@@ -30,7 +30,6 @@ func (linkedlist *LinkedList) Add(value int){
     aux.prox = &No{}
   }
   linkedlist.tam++
-  
   linkedlist.Print("Add")
 }
 
@@ -46,8 +45,8 @@ func (linkedlist *LinkedList) AddOnIndex(value int, index int){
   
 }
 
-func (linkedlist *LinkedList) Size(){
-  
+func (linkedlist *LinkedList) Size() int{
+  return linkedlist.tam
 }
 
 func (linkedlist *LinkedList) Get(index int){
