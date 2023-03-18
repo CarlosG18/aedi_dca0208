@@ -96,7 +96,14 @@ func (linkedlist *LinkedList) Size() int{
 }
 
 func (linkedlist *LinkedList) Get(index int) int{
-  return 1
+  cont := 0
+  var aux *No = linkedlist.cabeca
+  
+  for aux.prox != nil && cont != index{
+    aux = aux.prox
+    cont++
+  }
+  return aux.value
 }
  
 func (linkedlist *LinkedList) Set(value int, index int){
