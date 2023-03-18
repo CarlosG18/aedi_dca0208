@@ -1,8 +1,12 @@
 package testes
 
-import "main/packs/src/list"
+import (
+  "fmt"
+  "main/packs/src/list")
 
 func Teste_arraylist(){
+  fmt.Println(" ------ TESTANDO ARRAYLIST ------")
+  
   arraylist := list.ArrayList{}
   arraylist.Init(10)
   for i:=0; i<10; i++{

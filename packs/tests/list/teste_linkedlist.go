@@ -24,5 +24,6 @@ func Teste_linkedlist(){
   linkedlist.AddOnIndex(150,1)
   linkedlist.AddOnIndex(55,0)
   linkedlist.AddOnIndex(120,0)
-  
+  linkedlist.RemoveOnIndex(0)
+  linkedlist.RemoveOnIndex(2)
 }

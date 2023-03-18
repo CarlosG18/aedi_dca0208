@@ -49,9 +49,22 @@ func (linkedlist *LinkedList) Remove(){
 }
 
 func (linkedlist *LinkedList) RemoveOnIndex(index int){
-  
+  cont := 0
+  var aux *No = linkedlist.cabeca
+  var aux1 *No = aux.prox
 
-  
+  if index == 0{
+    linkedlist.cabeca = aux1
+  }else{
+    for cont < index-1{
+      aux = aux.prox
+      aux1 = aux.prox
+      cont++
+    }
+    aux.prox = aux1.prox
+  }
+  linkedlist.tam--
+ linkedlist.Print("RemoveOnIndex")
 }
 
 func (linkedlist *LinkedList) AddOnIndex(value int, index int){
