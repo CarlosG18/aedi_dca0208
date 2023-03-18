@@ -1,8 +1,14 @@
 package testes
 
-import "main/packs/src/list"
+import (
+  "fmt"
+  "main/packs/src/list"
+)
 
 func Teste_linkedlist(){
+  fmt.Println("----- Testando a linkedlist ----")
+  fmt.Println()
+
   linkedlist := list.LinkedList{}
   linkedlist.Init()
   
@@ -13,5 +19,9 @@ func Teste_linkedlist(){
   for i := 0; i<5; i++{
     linkedlist.Remove()
   }
+
+  linkedlist.AddOnIndex(200,3)
+  linkedlist.AddOnIndex(150,1)
+  linkedlist.AddOnIndex(55,0)
   
 }
