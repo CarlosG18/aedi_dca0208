@@ -103,11 +103,20 @@ func (linkedlist *LinkedList) Get(index int) int{
     aux = aux.prox
     cont++
   }
+  linkedlist.Print("Get")
   return aux.value
 }
  
 func (linkedlist *LinkedList) Set(value int, index int){
+  cont := 0
+  var aux *No = linkedlist.cabeca
   
+  for aux.prox != nil && cont != index{
+    aux = aux.prox
+    cont++
+  }
+  aux.value = value
+  linkedlist.Print("Set")
 }
 
 func (linkedlist *LinkedList) Print(operation string){
