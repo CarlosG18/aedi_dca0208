@@ -2,7 +2,7 @@ package testes
 
 import (
   "fmt"
-  "main/packs/src/list"
+  //"main/packs/src/list"
 )
 
 func Teste_DoubleLinkedList(){

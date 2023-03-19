@@ -16,16 +16,12 @@ func Teste_linkedlist(){
     linkedlist.Add(i)
   }
 
-  for i := 0; i<5; i++{
-    linkedlist.Remove()
-  }
-
-  linkedlist.AddOnIndex(200,3)
-  linkedlist.AddOnIndex(150,1)
-  linkedlist.AddOnIndex(55,0)
-  linkedlist.AddOnIndex(120,0)
-  linkedlist.RemoveOnIndex(0)
-  linkedlist.RemoveOnIndex(2)
-  fmt.Println(linkedlist.Get(0))
-  linkedlist.Set(780,0)
+  linkedlist.RemoveOnIndex(-1)
+  linkedlist.RemoveOnIndex(10)
+  linkedlist.AddOnIndex(500,-1)
+  linkedlist.AddOnIndex(78,44)
+  fmt.Println(linkedlist.Get(-1))
+  fmt.Println(linkedlist.Get(22))
+  linkedlist.Set(45,56)
+  linkedlist.Set(45,-1)
 }
