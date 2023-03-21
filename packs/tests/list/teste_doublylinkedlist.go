@@ -15,5 +15,6 @@ func Teste_DoublyLinkedList(){
   }
   dll.Remove()
   dll.RemoveOnIndex(4)
+  dll.AddOnIndex(150,5)
   
 }

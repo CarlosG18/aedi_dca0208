@@ -64,11 +64,18 @@ func (doublylinkedlist *DoublyLinkedList) AddOnIndex(value int, index int){
   var cont = 0
   var aux *No1 = doublylinkedlist.head
   
-  for aux.prox != nil && cont != index{
+  for cont != index{
     aux = aux.prox
     cont++
   }
-  
+  aux1 := &No1{}
+  aux.ant.prox = aux1
+  aux1.value = value
+  aux1.ant = aux.ant
+  aux1.prox = aux
+
+  doublylinkedlist.tam++
+  doublylinkedlist.Print("AddOnIndex")
 }
 
 func (doublylinkedlist *DoublyLinkedList) Size() int{
