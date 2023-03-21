@@ -79,6 +79,7 @@ func (doublylinkedlist *DoublyLinkedList) AddOnIndex(value int, index int){
 }
 
 func (doublylinkedlist *DoublyLinkedList) Size() int{
+  doublylinkedlist.Print("Size")
   return doublylinkedlist.tam
 }
 
@@ -90,11 +91,20 @@ func (doublylinkedlist *DoublyLinkedList) Get(index int) int{
     aux = aux.prox
     cont++
   }
+  doublylinkedlist.Print("Get")
   return aux.value
 }
  
 func (doublylinkedlist *DoublyLinkedList) Set(value int, index int){
-
+  var cont = 0
+  var aux *No1 = doublylinkedlist.head
+  
+  for cont != index{
+    aux = aux.prox
+    cont++
+  }
+  aux.value = value
+  doublylinkedlist.Print("Set")
 }
 
 func (doublylinkedlist *DoublyLinkedList) Print(operation string){
