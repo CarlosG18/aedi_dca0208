@@ -22,11 +22,7 @@ func (doublylinkedlist *DoublyLinkedList) Init(){
 }
 
 func (doublylinkedlist *DoublyLinkedList) Add(value int){
-  var aux *No1 = doublylinkedlist.head
-
-  for aux.prox != nil{
-    aux = aux.prox
-  }
+  aux := doublylinkedlist.Get_no_nil()
   aux.value = value
   aux.prox = &No1{}
   aux.prox.ant = aux
@@ -36,10 +32,7 @@ func (doublylinkedlist *DoublyLinkedList) Add(value int){
 }
 
 func (doublylinkedlist *DoublyLinkedList) Remove(){
-  var aux *No1 = doublylinkedlist.head
-  for aux.prox != nil{
-    aux = aux.prox
-  }
+  aux := doublylinkedlist.Get_no_nil()
   aux.ant.prox = nil
   
   doublylinkedlist.tam--
@@ -47,13 +40,7 @@ func (doublylinkedlist *DoublyLinkedList) Remove(){
 }
 
 func (doublylinkedlist *DoublyLinkedList) RemoveOnIndex(index int){
-  var cont = 0
-  var aux *No1 = doublylinkedlist.head
-  
-  for cont != index{
-    aux = aux.prox
-    cont++
-  }
+  aux := doublylinkedlist.Get_no_cont(index)
   aux.ant.prox = aux.prox
 
   doublylinkedlist.tam--
@@ -61,13 +48,7 @@ func (doublylinkedlist *DoublyLinkedList) RemoveOnIndex(index int){
 }
 
 func (doublylinkedlist *DoublyLinkedList) AddOnIndex(value int, index int){
-  var cont = 0
-  var aux *No1 = doublylinkedlist.head
-  
-  for cont != index{
-    aux = aux.prox
-    cont++
-  }
+  aux := doublylinkedlist.Get_no_cont(index)
   aux1 := &No1{}
   aux.ant.prox = aux1
   aux1.value = value
@@ -84,25 +65,13 @@ func (doublylinkedlist *DoublyLinkedList) Size() int{
 }
 
 func (doublylinkedlist *DoublyLinkedList) Get(index int) int{
-  var cont = 0
-  var aux *No1 = doublylinkedlist.head
-  
-  for cont != index{
-    aux = aux.prox
-    cont++
-  }
+  aux := doublylinkedlist.Get_no_cont(index)
   doublylinkedlist.Print("Get")
   return aux.value
 }
  
 func (doublylinkedlist *DoublyLinkedList) Set(value int, index int){
-  var cont = 0
-  var aux *No1 = doublylinkedlist.head
-  
-  for cont != index{
-    aux = aux.prox
-    cont++
-  }
+  aux := doublylinkedlist.Get_no_cont(index)
   aux.value = value
   doublylinkedlist.Print("Set")
 }
@@ -122,4 +91,22 @@ func (doublylinkedlist *DoublyLinkedList) Print(operation string){
   fmt.Println("Tamanho da doublylinkedlist = ", doublylinkedlist.tam)
   fmt.Println(operation)
   fmt.Println(doublylinkedlist.err)
+}
+
+func (doublylinkedlist *DoublyLinkedList) Get_no_nil() *No1{
+  var aux *No1 = doublylinkedlist.head
+  for aux.prox != nil{
+    aux = aux.prox
+  }
+  return aux
+}
+
+func (doublylinkedlist *DoublyLinkedList) Get_no_cont(index int) *No1{
+  var cont = 0
+  var aux *No1 = doublylinkedlist.head
+  for cont != index{
+    aux = aux.prox
+    cont++
+  }
+  return aux
 }
