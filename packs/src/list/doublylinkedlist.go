@@ -47,10 +47,27 @@ func (doublylinkedlist *DoublyLinkedList) Remove(){
 }
 
 func (doublylinkedlist *DoublyLinkedList) RemoveOnIndex(index int){
+  var cont = 0
+  var aux *No1 = doublylinkedlist.head
   
+  for cont != index{
+    aux = aux.prox
+    cont++
+  }
+  aux.ant.prox = aux.prox
+
+  doublylinkedlist.tam--
+  doublylinkedlist.Print("RemoveOnIndex")
 }
 
 func (doublylinkedlist *DoublyLinkedList) AddOnIndex(value int, index int){
+  var cont = 0
+  var aux *No1 = doublylinkedlist.head
+  
+  for aux.prox != nil && cont != index{
+    aux = aux.prox
+    cont++
+  }
   
 }
 
@@ -79,5 +96,6 @@ func (doublylinkedlist *DoublyLinkedList) Print(operation string){
   fmt.Print("]")
   fmt.Println()
   fmt.Println("Tamanho da doublylinkedlist = ", doublylinkedlist.tam)
+  fmt.Println(operation)
   fmt.Println(doublylinkedlist.err)
 }
