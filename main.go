@@ -6,8 +6,7 @@ import (
 
 func main() {
   //testes.Teste_arraylist()
-  testes.Teste_linkedlist()
-  //testes.Teste_doublelinkedlist()
-  
+  //testes.Teste_linkedlist()
+  testes.Teste_DoublyLinkedList()
 }
 
