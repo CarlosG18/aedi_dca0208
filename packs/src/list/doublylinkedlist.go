@@ -36,7 +36,14 @@ func (doublylinkedlist *DoublyLinkedList) Add(value int){
 }
 
 func (doublylinkedlist *DoublyLinkedList) Remove(){
-
+  var aux *No1 = doublylinkedlist.head
+  for aux.prox != nil{
+    aux = aux.prox
+  }
+  aux.ant.prox = nil
+  
+  doublylinkedlist.tam--
+  doublylinkedlist.Print("Remove")
 }
 
 func (doublylinkedlist *DoublyLinkedList) RemoveOnIndex(index int){
