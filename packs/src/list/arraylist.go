@@ -1,21 +1,24 @@
 package list
 
-import "fmt"
+import ("fmt"
+  "errors"
+)
 
 type ArrayList struct {
 	values []int
 	tam    int
-  err string
 }
 
-func (arraylist *ArrayList) Init(capacity int) {
-	arraylist.values = make([]int, capacity)
-  arraylist.tam = 0
-  arraylist.err = ""
+func (arraylist *ArrayList) Init(capacity int) error{
+  if capacity > 0{
+    arraylist.values = make([]int, capacity)
+    return nil
+  }else{
+    return errors.New("não é possivel criar um vetor com capacidade negativa")
+  }
 }
 
 func (arraylist *ArrayList) RemoveOnIndex(index int){
-  arraylist.err = ""
 if arraylist.tam > 0{
   if index < arraylist.tam && index >= 0{
 		for i := index; i < arraylist.tam-1; i++ {
@@ -23,16 +26,15 @@ if arraylist.tam > 0{
 		}
 		arraylist.tam--
   }else{
-    arraylist.err = "error: o index não foi encontrado"
+    
   }
 }else{
-  arraylist.err = "error: não é possivel remover algo que não possui nada!"
+  
 }
 arraylist.Print("RemoveOnIndex")
 }
 
 func (arraylist *ArrayList) Remove() {
-  arraylist.err = ""
 	if arraylist.tam > 0 {
 		arraylist.tam--
 	}else{
@@ -43,9 +45,8 @@ func (arraylist *ArrayList) Remove() {
 }
 
 func (arraylist *ArrayList) AddOnIndex(value int, index int) {
-  arraylist.err = ""
   if index > arraylist.tam || index < 0{
-    arraylist.err = "error: index não encontrado"
+    
     arraylist.Print("AddOnIndex")
     return
   }
@@ -63,7 +64,6 @@ func (arraylist *ArrayList) AddOnIndex(value int, index int) {
 }
 
 func (arraylist *ArrayList) Double() {
-  arraylist.err = ""
 	doublelist := make([]int, len(arraylist.values)*2)
 	//copiar os elementos
 	for i := 0; i < arraylist.tam; i++ {
@@ -81,7 +81,6 @@ func (arraylist *ArrayList) Get(index int) int {
 }
 
 func (arraylist *ArrayList) Set(index int, value int) {
-  arraylist.err = ""
 	if index >= 0 && index < arraylist.tam {
 		arraylist.values[index] = value
 	}
@@ -89,7 +88,6 @@ func (arraylist *ArrayList) Set(index int, value int) {
 }
 
 func (arraylist *ArrayList) Add(value int) {
-  arraylist.err = ""
 	if arraylist.tam == len(arraylist.values) {
 		arraylist.Double()
 	}
@@ -118,6 +116,5 @@ if arraylist.tam > 0 {
 }
   fmt.Println()
   fmt.Println("tamanho do vetor = ", arraylist.Size())
-  fmt.Println(arraylist.err)
   fmt.Println()
 }

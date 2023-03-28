@@ -1,12 +1,12 @@
 package main
 
 import (
-  "main/packs/tests/list"
+  //"main/packs/tests/list"
 )
 
 func main() {
   //testes.Teste_arraylist()
   //testes.Teste_linkedlist()
-  testes.Teste_DoublyLinkedList()
+  //testes.Teste_DoublyLinkedList()
 }
 

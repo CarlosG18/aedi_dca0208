@@ -14,8 +14,6 @@ func createLists(size int) {
 }
 
 func deleteLists() {
-	//in this case, createLists alone solves the problem
-	//however, I let the template here to be used in other tests
 	lists[0] = nil
 	lists[1] = nil
 	lists[2] = nil

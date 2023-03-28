@@ -1,14 +1,12 @@
 package list
 
-type Ilist interface{
-  Init()
+type IList interface{
   Add(value int)
-  Remove()
-  RemoveOnIndex(index int)
-  AddOnIndex(value int, index int)
-  Size()
-  Double()
-  Get(index int)
-  Set(value int, index int)
+  Remove() 
+  RemoveOnIndex(index int) error
+  AddOnIndex(value int, index int) error
+  Size() (int, error)
+  Get(index int) (int, error)
+  Set(value int, index int) error
   Print(operation string)
 }
