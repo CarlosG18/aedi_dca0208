@@ -18,73 +18,73 @@ func (arraylist *ArrayList) Init(capacity int) error{
   }
 }
 
-func (arraylist *ArrayList) RemoveOnIndex(index int){
+func (arraylist *ArrayList) RemoveOnIndex(index int) error{
 if arraylist.tam > 0{
   if index < arraylist.tam && index >= 0{
 		for i := index; i < arraylist.tam-1; i++ {
 			arraylist.values[i] = arraylist.values[i+1]
 		}
 		arraylist.tam--
+    arraylist.Print("RemoveOnIndex")
+    return nil
   }else{
-    
+    return errors.New("index não aceito!")
   }
 }else{
-  
+  return errors.New("a lista não possui elementos")
 }
-arraylist.Print("RemoveOnIndex")
 }
 
-func (arraylist *ArrayList) Remove() {
+func (arraylist *ArrayList) Remove() error{
 	if arraylist.tam > 0 {
 		arraylist.tam--
+    arraylist.Print("Remove")
+    return nil
 	}else{
-    arraylist.err = "error: não é possivel remover um vetor sem elementos"
+    return errors.New("não é possivel remover um vetor sem elementos")
   }
-	//tratamento do erro
-  arraylist.Print("Remove")
 }
 
-func (arraylist *ArrayList) AddOnIndex(value int, index int) {
+func (arraylist *ArrayList) AddOnIndex(value int, index int) error{
   if index > arraylist.tam || index < 0{
-    
-    arraylist.Print("AddOnIndex")
-    return
-  }
-  
-	if arraylist.tam == len(arraylist.values) {
+    if arraylist.tam == len(arraylist.values) {
 		arraylist.Double()
-	}
-
-	for i := arraylist.tam; i < index; i-- {
+	  }
+    for i := arraylist.tam; i < index; i-- {
 		arraylist.values[i] = arraylist.values[i-1]
-	}
-	arraylist.values[index] = value
-	arraylist.tam++
-  arraylist.Print("AddOnIndex")
+	  }
+	  arraylist.values[index] = value
+	  arraylist.tam++
+    arraylist.Print("AddOnIndex")
+    return nil
+  }else{
+    return errors.New("index não aceito!")
+  }
 }
 
 func (arraylist *ArrayList) Double() {
 	doublelist := make([]int, len(arraylist.values)*2)
-	//copiar os elementos
 	for i := 0; i < arraylist.tam; i++ {
 		doublelist[i] = arraylist.values[i]
 	}
 	arraylist.values = doublelist
 }
 
-func (arraylist *ArrayList) Get(index int) int {
+func (arraylist *ArrayList) Get(index int) (int,error) {
 	if index >= 0 && index < arraylist.tam {
-		return arraylist.values[index]
+		return arraylist.values[index], nil
   }
-
-  return -1
+  return -1, errors.New("index não aceito!")
 }
 
-func (arraylist *ArrayList) Set(index int, value int) {
+func (arraylist *ArrayList) Set(index int, value int) error{
 	if index >= 0 && index < arraylist.tam {
 		arraylist.values[index] = value
+    arraylist.Print("Set")
+    return nil
 	}
   arraylist.Print("Set")
+  return errors.New("index não aceito!")
 }
 
 func (arraylist *ArrayList) Add(value int) {
