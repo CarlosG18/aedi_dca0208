@@ -1,11 +1,13 @@
 package list
 
-import "fmt"
+import (
+  "fmt"
+  "errors"
+)
 
 type LinkedList struct{
   cabeca *No
   tam int
-  err string
 }
 
 type No struct{
@@ -15,14 +17,11 @@ type No struct{
 
 func (linkedlist *LinkedList) Init(){
   linkedlist.cabeca = &No{}
-  linkedlist.tam = 0
-  linkedlist.err = ""
 }
 
 func (linkedlist *LinkedList) Add(value int){
   var aux *No = linkedlist.cabeca
-  linkedlist.Reset_err()
-  
+
   for aux.prox != nil {
     aux = aux.prox
   }
@@ -34,8 +33,7 @@ func (linkedlist *LinkedList) Add(value int){
   linkedlist.Print("Add")
 }
 
-func (linkedlist *LinkedList) Remove(){
-  linkedlist.Reset_err()
+func (linkedlist *LinkedList) Remove() error{
   var aux *No = linkedlist.cabeca
   var auxAnt *No
 
@@ -49,14 +47,13 @@ func (linkedlist *LinkedList) Remove(){
     }
     linkedlist.tam--
     linkedlist.Print("Remove")
+    return nil
   }else{
-    linkedlist.err = "error:A linkedlist não possui elementos!"
-  linkedlist.Print("Remove:error")
+    return errors.New("Linkedlist não possui elementos!")
   }
 }
 
-func (linkedlist *LinkedList) RemoveOnIndex(index int){
-  linkedlist.Reset_err()
+func (linkedlist *LinkedList) RemoveOnIndex(index int) error{
   cont := 0
   var aux *No = linkedlist.cabeca
   var aux1 *No = aux.prox
@@ -73,23 +70,21 @@ func (linkedlist *LinkedList) RemoveOnIndex(index int){
       aux.prox = aux1.prox
     }
     linkedlist.tam--
- linkedlist.Print("RemoveOnIndex")
+    linkedlist.Print("RemoveOnIndex")
+    return nil
   }else{
-    linkedlist.err = "error: Não foi possível acessar o index!"
-    linkedlist.Print("RemoveOnIndex:error")
+    return errors.New("error: Não foi possível acessar o index!")
   }
 }
 
-func (linkedlist *LinkedList) AddOnIndex(value int, index int){
-  linkedlist.Reset_err()
+func (linkedlist *LinkedList) AddOnIndex(value int, index int) error{
   cont := 0
   var aux *No = linkedlist.cabeca
   var aux1 *No = aux.prox
   var new_num *No = &No{}
 
   if index < 0 || index >= linkedlist.tam {
-    linkedlist.err = "error: não foi possivel acessar o index!"
-    linkedlist.Print("AddOnIndex:error")
+    return errors.New("error: não foi possivel acessar o index!")
   }else{
     if index == 0{
       linkedlist.cabeca = new_num
@@ -107,41 +102,36 @@ func (linkedlist *LinkedList) AddOnIndex(value int, index int){
     }
   linkedlist.tam++
   linkedlist.Print("AddOnIndex")
+  return nil
   }
 }
 
 func (linkedlist *LinkedList) Size() int{
-  linkedlist.Reset_err()
   return linkedlist.tam
 }
 
-func (linkedlist *LinkedList) Get(index int) int{
-  linkedlist.Reset_err()
+func (linkedlist *LinkedList) Get(index int) (int,error){
   cont := 0
   var aux *No = linkedlist.cabeca
 
   if index < 0 || index >= linkedlist.tam {
-    linkedlist.err = "error: não foi possivel acessar o index!"
-    linkedlist.Print("Get:error")
-    return -1
+    return -1, errors.New("error: não foi possivel acessar o index!")
   }else{
     for aux.prox != nil && cont != index{
       aux = aux.prox
       cont++
     }
   linkedlist.Print("Get")
-  return aux.value
+  return aux.value, nil
   }
 }
  
-func (linkedlist *LinkedList) Set(value int, index int){
-  linkedlist.Reset_err()
+func (linkedlist *LinkedList) Set(value int, index int) error{
   cont := 0
   var aux *No = linkedlist.cabeca
 
   if index < 0 || index >= linkedlist.tam {
-    linkedlist.err = "error: não foi possivel acessar o index!"
-    linkedlist.Print("Set:error")
+    return errors.New("error: não foi possivel acessar o index!")
   }else{
     for aux.prox != nil && cont != index{
       aux = aux.prox
@@ -149,6 +139,7 @@ func (linkedlist *LinkedList) Set(value int, index int){
     }
   aux.value = value
   linkedlist.Print("Set")
+  return nil
   }
 }
 
@@ -164,13 +155,6 @@ func (linkedlist *LinkedList) Print(operation string){
   }
   fmt.Println("]")
   fmt.Println(operation)
-  if linkedlist.err != ""{
-    fmt.Println(linkedlist.err)
-  }
   fmt.Println("tamanho da linkedlist = ", linkedlist.tam)
   fmt.Println()
-}
-
-func (linkedlist *LinkedList) Reset_err(){
-  linkedlist.err = ""
 }
