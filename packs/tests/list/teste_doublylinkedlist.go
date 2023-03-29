@@ -27,10 +27,10 @@ func Teste_DoublyLinkedList(){
   dll.AddOnIndex(150,30)
 
   fmt.Println("Size = ", dll.Size())
-  fmt.Println("Get = ", dll.Get(-1))
-  fmt.Println("Get = ", dll.Get(0))
-  fmt.Println("Get = ", dll.Get(3))
-  fmt.Println("Get = ", dll.Get(30))
+  //fmt.Println("Get = ", dll.Get(-1))
+  //fmt.Println("Get = ", dll.Get(0))
+  //fmt.Println("Get = ", dll.Get(3))
+  //fmt.Println("Get = ", dll.Get(30))
 
   dll.Set(30,-1)
   dll.Set(30,0)
