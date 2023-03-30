@@ -1,6 +1,6 @@
 package list
 
-import ("fmt"
+import (
   "errors"
 )
 
@@ -25,7 +25,6 @@ if arraylist.tam > 0{
 			arraylist.values[i] = arraylist.values[i+1]
 		}
 		arraylist.tam--
-    arraylist.Print("RemoveOnIndex")
     return nil
   }else{
     return errors.New("index não aceito!")
@@ -38,7 +37,6 @@ if arraylist.tam > 0{
 func (arraylist *ArrayList) Remove() error{
 	if arraylist.tam > 0 {
 		arraylist.tam--
-    arraylist.Print("Remove")
     return nil
 	}else{
     return errors.New("não é possivel remover um vetor sem elementos")
@@ -55,7 +53,6 @@ func (arraylist *ArrayList) AddOnIndex(value int, index int) error{
 	  }
 	  arraylist.values[index] = value
 	  arraylist.tam++
-    arraylist.Print("AddOnIndex")
     return nil
   }else{
     return errors.New("index não aceito!")
@@ -80,10 +77,8 @@ func (arraylist *ArrayList) Get(index int) (int,error) {
 func (arraylist *ArrayList) Set(index int, value int) error{
 	if index >= 0 && index < arraylist.tam {
 		arraylist.values[index] = value
-    arraylist.Print("Set")
     return nil
 	}
-  arraylist.Print("Set")
   return errors.New("index não aceito!")
 }
 
@@ -93,28 +88,8 @@ func (arraylist *ArrayList) Add(value int) {
 	}
 	arraylist.values[arraylist.tam] = value
 	arraylist.tam++
-  arraylist.Print("Add")
 }
 
 func (arraylist *ArrayList) Size() int {
 	return arraylist.tam
-}
-
-func (arraylist *ArrayList) Print(operation string){
-  fmt.Println("operação = ", operation)
-if arraylist.tam > 0 {
-  fmt.Print("[")
-  for i := 0; i < arraylist.tam; i++ {
-    if i > 0 {
-      fmt.Print(",")
-    }
-    fmt.Print(arraylist.values[i])
-  }
-  fmt.Print("]")
-}else{
-  fmt.Println("o vetor não possui valores")
-}
-  fmt.Println()
-  fmt.Println("tamanho do vetor = ", arraylist.Size())
-  fmt.Println()
 }

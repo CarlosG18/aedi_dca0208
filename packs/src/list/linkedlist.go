@@ -1,7 +1,7 @@
 package list
 
 import (
-  "fmt"
+  
   "errors"
 )
 
@@ -30,7 +30,6 @@ func (linkedlist *LinkedList) Add(value int){
     aux.prox = &No{}
   }
   linkedlist.tam++
-  linkedlist.Print("Add")
 }
 
 func (linkedlist *LinkedList) Remove() error{
@@ -46,7 +45,6 @@ func (linkedlist *LinkedList) Remove() error{
     auxAnt.prox = nil
     }
     linkedlist.tam--
-    linkedlist.Print("Remove")
     return nil
   }else{
     return errors.New("Linkedlist não possui elementos!")
@@ -70,7 +68,6 @@ func (linkedlist *LinkedList) RemoveOnIndex(index int) error{
       aux.prox = aux1.prox
     }
     linkedlist.tam--
-    linkedlist.Print("RemoveOnIndex")
     return nil
   }else{
     return errors.New("error: Não foi possível acessar o index!")
@@ -101,7 +98,6 @@ func (linkedlist *LinkedList) AddOnIndex(value int, index int) error{
     new_num.prox = aux1
     }
   linkedlist.tam++
-  linkedlist.Print("AddOnIndex")
   return nil
   }
 }
@@ -121,7 +117,6 @@ func (linkedlist *LinkedList) Get(index int) (int,error){
       aux = aux.prox
       cont++
     }
-  linkedlist.Print("Get")
   return aux.value, nil
   }
 }
@@ -138,23 +133,6 @@ func (linkedlist *LinkedList) Set(value int, index int) error{
       cont++
     }
   aux.value = value
-  linkedlist.Print("Set")
   return nil
   }
-}
-
-func (linkedlist *LinkedList) Print(operation string){
-  var aux *No = linkedlist.cabeca
-  fmt.Print("[")
-  for aux.prox != nil {
-    fmt.Print(aux.value)
-    aux = aux.prox
-    if aux.prox != nil{
-      fmt.Print(",")
-    }
-  }
-  fmt.Println("]")
-  fmt.Println(operation)
-  fmt.Println("tamanho da linkedlist = ", linkedlist.tam)
-  fmt.Println()
 }

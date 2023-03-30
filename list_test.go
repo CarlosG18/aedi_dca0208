@@ -1,16 +1,21 @@
-package list
+package main
 
 import (
 	"testing"
+  "main/packs/src/list"
 )
 
 var size int
-var lists [3]IList
+var lists [3]list.IList
 
 func createLists(size int) {
-	arraylist := &ArrayList{}
+	arraylist := &list.ArrayList{}
 	(*arraylist).Init(size)
-	lists = [3]IList{arraylist, &LinkedList{}, &DoublyLinkedList{}}
+  linkedlist := &list.LinkedList{}
+  linkedlist.Init()
+  doublylinkedlist := &list.DoublyLinkedList{}
+  doublylinkedlist.Init()
+	lists = [3]list.IList{arraylist, linkedlist, doublylinkedlist}
 }
 
 func deleteLists() {
