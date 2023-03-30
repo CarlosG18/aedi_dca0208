@@ -2,46 +2,56 @@ package stack
 
 import "errors"
 
-type Stack struct{
+type ArrayStack struct{
   values []int
   size int
 }
 
-func (stack *Stack) Init(size int){
-  stack.values = make([]int,size)
-  stack.size = 0
+func (arraystack *ArrayStack) Init(size int){
+  arraystack.values = make([]int,size)
+  arraystack.size = 0
 }
 
-func (stack *Stack) Double() {
-	doublestack := make([]int, len(stack.values)*2)
-	for i := 0; i < stack.size; i++ {
-		stack[i] = stack.values[i]
+func (arraystack *ArrayStack) Double() {
+	doublestack := make([]int, len(arraystack.values)*2)
+	for i := 0; i < arraystack.size; i++ {
+		doublestack[i] = arraystack.values[i]
 	}
-	stack.values = doublestack
+	arraystack.values = doublestack
 }
 
-func (stack *Stack) Push(value int){
-	if stack.size == len(stack.values) {
-		stack.Double()
+func (arraystack *ArrayStack) Push(value int){
+	if arraystack.size == len(arraystack.values) {
+		arraystack.Double()
 	}
-	stack.values[stack.size] = value
-	stack.size++
+	arraystack.values[arraystack.size] = value
+	arraystack.size++
 }
 
-func (stack *Stack) Pop(){
-  stack.size--
+func (arraystack *ArrayStack) Pop()(int, error){
+  if arraystack.size > 0{
+    ex_top := arraystack.values[arraystack.size-1]
+  arraystack.size--
+    return ex_top, nil
+  }else{
+    return -1, errors.New("a stack esta vazia!")
+  }
 }
 
-func (stack *Stack) Top() int{
-	return arraylist.values[stack.size]
+func (arraystack *ArrayStack) Peek() (int,error){
+  if arraystack.size > 0{
+    return arraystack.values[arraystack.size-1], nil
+  }else{
+    return -1, errors.New("A stack não possui elementos")
+  }
 }
 
-func (stack *Stack) Size() int{
-  return stack.size
+func (arraystack *ArrayStack) Size() int{
+  return arraystack.size
 }
 
-func (stack *Stack) Empty() bool{
-  if stack.size == 0{
+func (arraystack *ArrayStack) Empty() bool{
+  if arraystack.size > 0{
     return false
   }else{
     return true
