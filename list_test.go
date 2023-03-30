@@ -10,7 +10,7 @@ var lists [3]list.IList
 
 func createLists(size int) {
 	arraylist := &list.ArrayList{}
-	(*arraylist).Init(size)
+	arraylist.Init(size)
   linkedlist := &list.LinkedList{}
   linkedlist.Init()
   doublylinkedlist := &list.DoublyLinkedList{}

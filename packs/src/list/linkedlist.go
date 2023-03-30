@@ -17,6 +17,7 @@ type No struct{
 
 func (linkedlist *LinkedList) Init(){
   linkedlist.cabeca = &No{}
+  linkedlist.tam = 0
 }
 
 func (linkedlist *LinkedList) Add(value int){
@@ -80,7 +81,7 @@ func (linkedlist *LinkedList) AddOnIndex(value int, index int) error{
   var aux1 *No = aux.prox
   var new_num *No = &No{}
 
-  if index < 0 || index >= linkedlist.tam {
+  if index < 0 || index > linkedlist.tam {
     return errors.New("error: não foi possivel acessar o index!")
   }else{
     if index == 0{
@@ -110,7 +111,7 @@ func (linkedlist *LinkedList) Get(index int) (int,error){
   cont := 0
   var aux *No = linkedlist.cabeca
 
-  if index < 0 || index >= linkedlist.tam {
+  if index < 0 || index > linkedlist.tam {
     return -1, errors.New("error: não foi possivel acessar o index!")
   }else{
     for aux.prox != nil && cont != index{

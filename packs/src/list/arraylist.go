@@ -12,6 +12,7 @@ type ArrayList struct {
 func (arraylist *ArrayList) Init(capacity int) error{
   if capacity > 0{
     arraylist.values = make([]int, capacity)
+    arraylist.tam = 0
     return nil
   }else{
     return errors.New("não é possivel criar um vetor com capacidade negativa")
@@ -45,17 +46,17 @@ func (arraylist *ArrayList) Remove() error{
 
 func (arraylist *ArrayList) AddOnIndex(value int, index int) error{
   if index > arraylist.tam || index < 0{
+    return errors.New("index não aceito!")
+  }else{
     if arraylist.tam == len(arraylist.values) {
 		arraylist.Double()
 	  }
-    for i := arraylist.tam; i < index; i-- {
+    for i := arraylist.tam; i > index; i-- {
 		arraylist.values[i] = arraylist.values[i-1]
 	  }
 	  arraylist.values[index] = value
 	  arraylist.tam++
     return nil
-  }else{
-    return errors.New("index não aceito!")
   }
 }
 
@@ -74,8 +75,8 @@ func (arraylist *ArrayList) Get(index int) (int,error) {
   return -1, errors.New("index não aceito!")
 }
 
-func (arraylist *ArrayList) Set(index int, value int) error{
-	if index >= 0 && index < arraylist.tam {
+func (arraylist *ArrayList) Set(value int, index int) error{
+	if index >= 0 && index <= arraylist.tam {
 		arraylist.values[index] = value
     return nil
 	}

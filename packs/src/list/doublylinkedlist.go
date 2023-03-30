@@ -1,7 +1,7 @@
 package list
 
 import (
-  "fmt"
+  
   "errors"
 )
 
@@ -19,6 +19,7 @@ type No1 struct{
 func (doublylinkedlist *DoublyLinkedList) Init(){
   doublylinkedlist.head = &No1{}
   doublylinkedlist.head.ant = nil
+  doublylinkedlist.tam = 0
 }
 
 func (doublylinkedlist *DoublyLinkedList) Add(value int){
@@ -38,8 +39,6 @@ func (doublylinkedlist *DoublyLinkedList) Remove() error{
   }else{
     return errors.New("não é possivel remover pois a doublylinkedlist esta vazia!")
   }
-  
-  
 }
 
 func (doublylinkedlist *DoublyLinkedList) RemoveOnIndex(index int) error{
@@ -47,6 +46,7 @@ func (doublylinkedlist *DoublyLinkedList) RemoveOnIndex(index int) error{
     aux := doublylinkedlist.head
     doublylinkedlist.head = aux.prox
     aux.prox.ant = nil
+    doublylinkedlist.tam--
     return nil
   }else{
     if index >=0 && index < doublylinkedlist.tam{
@@ -71,7 +71,7 @@ func (doublylinkedlist *DoublyLinkedList) AddOnIndex(value int, index int) error
     aux1.ant = nil
     doublylinkedlist.tam++
     return nil
-  }else if index > 0 && index < doublylinkedlist.tam{
+  }else if index > 0 && index <= doublylinkedlist.tam{
     aux := doublylinkedlist.Get_no_cont(index)
     aux1 := &No1{}
     aux.ant.prox = aux1
@@ -92,7 +92,7 @@ func (doublylinkedlist *DoublyLinkedList) Size() int{
 
 func (doublylinkedlist *DoublyLinkedList) Get(index int) (int,error){
   aux := doublylinkedlist.head
-  if index >= 0 && index < doublylinkedlist.tam{
+  if index >= 0 && index <= doublylinkedlist.tam{
     aux = doublylinkedlist.Get_no_cont(index)
     return aux.value, nil
   }else{
