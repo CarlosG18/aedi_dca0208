@@ -5,19 +5,20 @@ import (
 )
 
 var size int
-var stacks [1]IStack
+var stacks [2]IStack
 
 func createStacks(size int) {
 	arraystack := &ArrayStack{}
 	(*arraystack).Init(size)
-	stacks = [1]IStack{arraystack} //&LinkedListStack{}}
+  linkedstack := &LinkedStack{}
+	stacks = [2]IStack{arraystack, linkedstack}
 }
 
 func deleteStacks() {
 	//in this case, createStacks alone solves the problem
 	//however, I let the template here to be used in other tests
 	stacks[0] = nil
-	//stacks[1] = nil
+	stacks[1] = nil
 }
 
 func setupTest() func() {
