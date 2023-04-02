@@ -1,4 +1,4 @@
-package Queue
+package queue
 
 type IQueue interface {
 	Enqueue(value int) 
