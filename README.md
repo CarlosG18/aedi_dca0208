@@ -3,7 +3,7 @@ Implementações referente a disciplina de Estrutura de Dados I - DCA0208 - UFRN
 
 ## Unidade 1
 
-1. [Listas](https://github.com/CarlosG18/edi_dca0208/tree/main/conteudos/lista/lista.md):
+1. [Listas](https://github.com/CarlosG18/edi_dca0208/tree/main/conteudos/list/list.md):
    - Arraylist
    - Linkedlist
    - Doublylinkedlist
