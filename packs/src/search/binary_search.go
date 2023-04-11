@@ -19,18 +19,21 @@ func Binsearch_ite(values []int, value int) int {
 }
 
 //forma recursiva
-
+/*
 func Binsearch_rec(values []int, start int, end int, value int) int {
-	if start <= end {
-		mid := (int)(start+end) / 2
-		if value == values[mid] {
-			return mid
-		} else if value < values[mid] {
-			Binsearch_rec(values, start, mid-1, value)
-		} else {
-			Binsearch_rec(values, mid+1, end, value)
-		}
-	}else{
+	if start >= end {
     return -1
   }
+
+  mid := (int)((start+end) / 2)
+  
+	if value == values[mid] {
+		return mid
+	}else if value < values[mid] {
+		Binsearch_rec(values, start, mid-1, value)
+	}else{
+		Binsearch_rec(values, mid+1, end, value)
+	}
+  return -1
 }
+*/
