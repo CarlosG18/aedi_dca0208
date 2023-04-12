@@ -6,15 +6,19 @@ import (
 )
 
 func main() {
-	link := list.LinkedList{}
-	link.Init()
+	ll := list.LinkedList{}
+	ll.Init()
+
+	ll.Add(51)
 
 	for i := 0; i < 10; i++ {
-		link.Add(i)
+		ll.Add(i)
 	}
-	link.Print()
-	fmt.Println()
-	link.Invert()
-	link.Print()
+  
 
+	ll.Print()
+	fmt.Println()
+	ll.SubList_Par()
+	ll.Print()
+  
 }

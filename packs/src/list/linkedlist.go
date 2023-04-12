@@ -168,3 +168,28 @@ func (linkedlist *LinkedList) Print() {
 		aux = aux.prox
 	}
 }
+
+func (linkedlist *LinkedList) SubList_Par() {
+	//retorna uma sublista da lista principal apenas se os numeros da lista são pares
+	aux := linkedlist.cabeca
+	var prox *No = nil
+	var par_ant *No = nil
+
+	for aux != nil {
+		fmt.Println(aux.prox.value)
+		if aux.prox != nil{
+			prox = aux.prox
+		} else {
+			break
+		}
+		if aux.value%2 == 0 {
+			par_ant = aux
+		} else {
+			aux.prox = nil
+		}
+		if prox.value%2 == 0 && par_ant != nil {
+			par_ant.prox = prox
+		}
+		aux = prox
+	}
+}
