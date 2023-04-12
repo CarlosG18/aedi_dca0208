@@ -174,16 +174,20 @@ func (linkedlist *LinkedList) SubList_Par() {
 	aux := linkedlist.cabeca
 	var prox *No = nil
 	var par_ant *No = nil
+  cont := 0
 
 	for aux != nil {
-		fmt.Println(aux.prox.value)
 		if aux.prox != nil{
 			prox = aux.prox
 		} else {
 			break
 		}
 		if aux.value%2 == 0 {
-			par_ant = aux
+      par_ant = aux
+      if cont == 0{
+        linkedlist.cabeca = par_ant
+      }
+      cont++
 		} else {
 			aux.prox = nil
 		}
