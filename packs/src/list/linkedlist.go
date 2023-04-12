@@ -139,32 +139,28 @@ func (linkedlist *LinkedList) Set(value int, index int) error {
 }
 
 func (linkedlist *LinkedList) Invert() {
-	//anterior := No{}
 	atual := linkedlist.cabeca
 	prox := atual.prox
-	var ant *No = nil
-	fmt.Println()
-	fmt.Println()
-
+	var anterior *No = nil
 	for atual != nil {
-		fmt.Println("anterior = ", ant, " atual = ", atual, " proximo = ", prox)
+		//prox = atual.prox
+		atual.prox = anterior
+		anterior = atual
+		atual = prox
 		if atual.prox != nil {
 			prox = atual.prox
+		} else {
+			prox = nil
+			atual.prox = anterior
+			break
 		}
-		ant = atual
-		atual = atual.prox
-
-		prox = atual.prox
-		atual.prox = ant
-		ant = atual
-		atual = prox
 	}
-	//linkedlist.cabeca = atual
+	linkedlist.cabeca = atual
 }
 
 func (linkedlist *LinkedList) Print() {
 	aux := linkedlist.cabeca
-	for aux != nil {
+	for aux.prox != nil {
 		fmt.Print(aux.value)
 		if aux.prox != nil {
 			fmt.Print(",")

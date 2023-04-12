@@ -1,7 +1,7 @@
 package main
 
 import (
-	//"fmt"
+	"fmt"
 	"main/packs/src/list"
 )
 
@@ -13,7 +13,8 @@ func main() {
 		link.Add(i)
 	}
 	link.Print()
+	fmt.Println()
 	link.Invert()
 	link.Print()
-  
+
 }
