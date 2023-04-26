@@ -14,4 +14,10 @@ Implementações referente a disciplina de Estrutura de Dados I - DCA0208 - UFRN
    - Busca Linear;
    - Busca Binária;
 
+## unidade 2 - algoritmos de ordenação
+
+1. [BubbleSort](https://github.com/CarlosG18/edi_dca0208/tree/main/conteudos/ordenacao/bubblesort.md);
+2. [SelectionSort](https://github.com/CarlosG18/edi_dca0208/tree/main/conteudos/ordenacao/selectionsort.md);
+3. [InsertionSort](https://github.com/CarlosG18/edi_dca0208/tree/main/conteudos/ordenacao/insertionsort.md);
+
 
