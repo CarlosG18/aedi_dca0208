@@ -1,26 +1,37 @@
 package sort
 
-func MergeSort(v []int) {
-	//função para dividir o vetor v recursivamente
-	tam := len(v)
-	v1 := make([]int, tam/2)
-	v2 := make([]int, tam/2)
+import (
+    "fmt"
+    //"math"
+    //"reflect"
+  )
 
+func MergeSort(slice []int, tam int) {
 	if tam > 1 {
-		for i := 0; i < tam/2; i++ {
-			v1[i] = v[i]
+	  tam := len(slice)
+	  meio := tam/2
+	  tam_v1 := meio
+	  tam_v2 := tam-meio
+	  v1 := make([]int, tam_v1)
+	  v2 := make([]int, tam_v2)
+	  
+		for i := 0; i < meio; i++ {
+			v1[i] = slice[i]
 		}
-		for i := tam / 2; i < tam; i++ {
-			v2[i-(tam/2)] = v[i]
+		
+		fmt.Println()
+		for i := meio; i < tam; i++ {
+			v2[i-meio] = slice[i]
 		}
-
-		MergeSort(v1)
-		MergeSort(v2)
-		Merge(v1, v2)
+    fmt.Println("v1 = ", v1)
+    fmt.Println("v2 = ", v2)
+		MergeSort(v1, len(v1))
+		MergeSort(v2, len(v2))
+    Merge(v1, v2)
 	}
 }
 
-func Merge(v1 []int, v2 []int) []int {
+func Merge(v1 []int, v2 []int) /*[]int*/ {
 	n := len(v1)
 	m := len(v2)
 	new_v := make([]int, n+m)
@@ -28,9 +39,9 @@ func Merge(v1 []int, v2 []int) []int {
 	cont2 := 0
 	cont3 := 0
 
-	for cont3 < len(new_v) {
+	for cont1 < n && cont2 < m {
 		if v1[cont1] > v2[cont2] {
-			new_v[cont1] = v2[cont2]
+			new_v[cont3] = v2[cont2]
 			cont3++
 			cont2++
 		} else {
@@ -39,6 +50,18 @@ func Merge(v1 []int, v2 []int) []int {
 			cont1++
 		}
 	}
-
-	return new_v
+	for cont1 < n{
+	  new_v[cont3] = v1[cont1]
+	  cont1++
+	  cont3++
+	}
+	for cont2 < m{
+	  new_v[cont3] = v2[cont2]
+	  cont2++
+	  cont3++
+	}
+  
+  fmt.Println("merge = ", new_v)
+  fmt.Println()
+	//return new_v
 }

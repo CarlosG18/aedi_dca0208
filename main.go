@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
-	"main/packs/src/sort"
+  "main/packs/src/sort"
 )
 
 func main() {
-	v := [5]int{45,29,58,36,1}
+	v := []int{45,298,5,89,1}
 	fmt.Println(v)
-	v1 := sort.InsertionSort(v)
-	fmt.Print(v1)
-
+	sort.MergeSort(v, len(v))
+	/*v1 := sort.MergeSort(v, len(v))
+	fmt.Print(v1)*/
+	
 }
