@@ -1,14 +1,7 @@
 package sort
 
-import (
-	"fmt"
-	//"math"
-	//"reflect"
-)
-
-func MergeSort(slice []int, tam int) []int {
+func MergeSort(v []int, tam int) []int{
 	if tam > 1 {
-		tam := len(slice)
 		meio := tam / 2
 		tam_v1 := meio
 		tam_v2 := tam - meio
@@ -16,30 +9,21 @@ func MergeSort(slice []int, tam int) []int {
 		v2 := make([]int, tam_v2)
 
 		for i := 0; i < meio; i++ {
-			v1[i] = slice[i]
+			v1[i] = v[i]
 		}
 
-		fmt.Println()
 		for i := meio; i < tam; i++ {
-			v2[i-meio] = slice[i]
+			v2[i-meio] = v[i]
 		}
-		fmt.Println("v1 = ", v1)
-		fmt.Println("v2 = ", v2)
 
-		fmt.Println()
-
-		fmt.Println("entrando no mergeSort com v1 = ", v1)
-		MergeSort(v1, len(v1))
-		fmt.Println("entrando no mergeSort com v2 = ", v2)
-		MergeSort(v2, len(v2))
-		fmt.Println("entrando no merge com v1 = ", v1, ", v2 = ", v2)
-		vz := Merge(v1, v2)
-		return vz
+		v1 = MergeSort(v1, len(v1))
+		v2 = MergeSort(v2, len(v2))
+		return Merge(v1, v2)
 	}
-	return nil
+	return v
 }
 
-func Merge(v1 []int, v2 []int) []int {
+func Merge(v1 []int, v2 []int) []int{
 	n := len(v1)
 	m := len(v2)
 	new_v := make([]int, n+m)
@@ -53,7 +37,7 @@ func Merge(v1 []int, v2 []int) []int {
 			cont3++
 			cont2++
 		} else {
-			new_v[cont1] = v1[cont1]
+			new_v[cont3] = v1[cont1]
 			cont3++
 			cont1++
 		}
@@ -68,8 +52,5 @@ func Merge(v1 []int, v2 []int) []int {
 		cont2++
 		cont3++
 	}
-
-	fmt.Println("retornando = ", new_v)
-	fmt.Println()
 	return new_v
 }
