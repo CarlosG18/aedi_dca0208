@@ -9,11 +9,11 @@ func QuickSort(v []int, init int, fin int){
 }
 
 func Particion(v []int, init int, fin int) int{
-  pindex := 0
+  pindex := init
   pivo := v[fin]
   
   for i:=init; i< fin; i++{
-    if v[i] <= pivo{
+    if pivo >= v[i] {
       v[i], v[pindex] = v[pindex], v[i]
       pindex++
     }

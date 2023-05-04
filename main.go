@@ -1,11 +1,23 @@
 package main
 
 import (
-	//"fmt"
+	"fmt"
 	"main/packs/src/sort"
+	"math/rand"
 )
 
 func main() {
-  vetor := [7]int{2,7,9,12,0,1,5}
+  vetor := FullArrayRandom(23)
+  fmt.Println("vetor = ", vetor)
   sort.QuickSort(vetor,0,len(vetor)-1)
+  fmt.Println("vetor ordenado com quicksort = ", vetor)
+}
+
+func FullArrayRandom(tam int) []int{
+  vetor := make([]int,tam)
+  
+  for i:=0; i<tam; i++{
+    vetor[i] = rand.Intn(100)
+  }
+  return vetor
 }
