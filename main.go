@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"main/packs/src/sort"
+	"main/packs/sort"
 	"math/rand"
 	"time"
 )

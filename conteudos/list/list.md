@@ -1,7 +1,0 @@
-# Listas
-
-## Arraylist
-
-## Linkedlist
-
-## Doublylinkedlist
