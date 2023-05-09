@@ -1,5 +1,7 @@
 package sort
 
+//import "fmt"
+
 func CountingSort(v []int) []int{
   /*
   passos:
@@ -9,9 +11,11 @@ func CountingSort(v []int) []int{
   4 somar comulativamente no vetor de contagem
   5 alocar um novo vetor para armazenar os valores ordenados
   6 mapear os elementos de v para o usando c
+  7 adicionar um vetor de casas ocupadas
   */
   
   tam := len(v)
+  ocupado := make([]bool, tam)
   maior := v[0]
   menor := v[0]
   
@@ -36,7 +40,12 @@ func CountingSort(v []int) []int{
   
   o := make([]int,tam)
   for i:=0; i< len(v); i++{
-    o[c[v[i]-menor]-1] = v[i]
+    iordenado := c[v[i]-menor]-1
+    for ocupado[iordenado] == true{
+      iordenado--
+    }
+    o[iordenado] = v[i]
+    ocupado[iordenado] = true
   }
   
   return o
