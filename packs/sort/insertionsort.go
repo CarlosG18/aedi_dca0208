@@ -1,6 +1,6 @@
 package sort
 
-func InsertionSort(v [5]int) [5]int {
+func InsertionSort(v []int) []int {
 	tam := len(v)
 
 	for i := 1; i < tam; i++ {

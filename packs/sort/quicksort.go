@@ -1,5 +1,7 @@
 package sort
 
+//import "math/rand"
+
 func QuickSort(v []int, init int, fin int){
   if init < fin{
     pos := Particion(v,init,fin)
@@ -10,6 +12,8 @@ func QuickSort(v []int, init int, fin int){
 
 func Particion(v []int, init int, fin int) int{
   pindex := init
+  /*i := rand.Intn(fin)
+  v[fin], v[i] = v[i], v[fin]*/
   pivo := v[fin]
   
   for i:=init; i< fin; i++{

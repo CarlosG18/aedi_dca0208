@@ -1,6 +1,6 @@
 package sort
 
-func BubbleSort(v [7]int) [7]int {
+func BubbleSort(v []int) []int {
 	tam := len(v)
 	mudou := false
 

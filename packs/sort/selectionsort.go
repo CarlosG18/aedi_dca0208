@@ -1,6 +1,6 @@
 package sort
 
-func SelectionSort(v [7]int) [7]int {
+func SelectionSort(v []int) []int {
 	tam := len(v)
 
 	for j := 0; j < tam-1; j++ {
