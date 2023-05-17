@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+  /* testes algoritmos de ordenação
   vetor := FullArrayDecres(10000)
   fmt.Println("vetor = ", vetor)
   fmt.Println()
@@ -58,6 +59,9 @@ func main() {
   fmt.Println("tempo gasto com MergeSort O(logn) = ", end3)
   fmt.Println("tempo gasto com QuickSort O(nlogn) = ", end4)
   fmt.Println("tempo gasto com CountingSort O(n) = ", end5)
+  */
+
+  //testes com árvores
 }
 
 func FullArrayRandom(tam int) []int{
