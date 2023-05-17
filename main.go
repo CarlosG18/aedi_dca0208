@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
-	"main/packs/sort"
+	//"main/packs/sort"
+  "main/packs/tree"
 	"math/rand"
-	"time"
+	//"time"
 )
 
 func main() {
-  /* testes algoritmos de ordenação
+  /* testes algortitmos de ordenação
   vetor := FullArrayDecres(10000)
   fmt.Println("vetor = ", vetor)
   fmt.Println()
@@ -59,16 +60,34 @@ func main() {
   fmt.Println("tempo gasto com MergeSort O(logn) = ", end3)
   fmt.Println("tempo gasto com QuickSort O(nlogn) = ", end4)
   fmt.Println("tempo gasto com CountingSort O(n) = ", end5)
-  */
+*/
 
-  //testes com árvores
+// fazendo testes em arvores
+  for i:=0; i<10; i++{
+    TesteBusca(i)
+  }
 }
 
-func FullArrayRandom(tam int) []int{
+func TesteBusca(numero int){
+  tree := tree.Bst{}
+  vetor_numeros := FullArrayRandom(10,10)
+  fmt.Println("imprimindo o vetor de valores = ", vetor_numeros)
+
+  for i:=0; i<len(vetor_numeros); i++{
+    tree.Add(vetor_numeros[i])
+  }
+
+  fmt.Println("procurando o numero ", numero)
+  buscar := tree.Busca(numero)
+  fmt.Println("achou? ", buscar)
+  fmt.Println()
+}
+
+func FullArrayRandom(tam int, intervalo int) []int{
   vetor := make([]int,tam)
   
   for i:=0; i<tam; i++{
-    vetor[i] = rand.Intn(100)
+    vetor[i] = rand.Intn(intervalo)
   }
   return vetor
 }

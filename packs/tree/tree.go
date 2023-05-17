@@ -1,5 +1,6 @@
-import tree
+package tree
 
-struct ITREE interface{
-  add(value int)
+type ITREE interface{
+  Add(value int)
+  Busca(value int) bool
 }
