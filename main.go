@@ -63,23 +63,42 @@ func main() {
 */
 
 // fazendo testes em arvores
-  for i:=0; i<10; i++{
-    TesteBusca(i)
+  for i:= 0; i<10; i++{
+    Add_numeros(10,50)
   }
 }
 
-func TesteBusca(numero int){
-  tree := tree.Bst{}
-  vetor_numeros := FullArrayRandom(10,10)
-  fmt.Println("imprimindo o vetor de valores = ", vetor_numeros)
+func Add_numeros(qtd int, intervalo int){
+  tree := tree.BstNode{}
+  vetor_numeros := FullArrayRandom(qtd,intervalo)
 
   for i:=0; i<len(vetor_numeros); i++{
     tree.Add(vetor_numeros[i])
   }
+  TestTree(&tree, vetor_numeros)
+  fmt.Print("print In = ")
+  tree.PrintIn()
+  fmt.Println()
+  fmt.Print("print Pre = ")
+  tree.PrintPre()
+  fmt.Println()
+  fmt.Print("print Pos = ")
+  tree.PrintPos()
+  fmt.Println()
+  max := tree.Max()
+  min := tree.Min()
+  fmt.Println("max = ", max, " min = ", min)
+  fmt.Println()
+  
+}
 
-  fmt.Println("procurando o numero ", numero)
-  buscar := tree.Busca(numero)
-  fmt.Println("achou? ", buscar)
+func TestTree(tree *tree.BstNode, vetor []int){
+  fmt.Println("testando a busca na árvore = ", vetor)
+  
+  for i:=0; i < 10; i++{
+    busca := tree.Search(i)
+    fmt.Println("procurando o ", i, "achou? ", busca)
+  }
   fmt.Println()
 }
 

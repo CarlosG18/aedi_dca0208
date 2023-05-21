@@ -2,24 +2,10 @@ package tree
 
 import "fmt"
 
-type Bst struct{
-  root *BstNode
-  size int
-}
-
 type BstNode struct{
   left *BstNode
   value int
   rigth *BstNode
-}
-
-func Print(nome string){
-  fmt.Println(nome)  
-}
-
-func (bst *Bst) Init(){
-  bst.root = &(BstNode{})
-  bst.size = 0
 }
 
 func NewNode(value int) *BstNode{
@@ -30,58 +16,93 @@ func NewNode(value int) *BstNode{
   return &node
 }
 
-func (bst *Bst) Add(value int){
-  if bst.root == nil{
-    bst.root = NewNode(value)
-  }
-  aux := bst.root
-  prev := aux
-  for aux != nil{
-    prev = aux
-    if value <= aux.value{
-      aux = aux.left 
+func (bstnode *BstNode) Add(value int){
+  if value > bstnode.value{
+    if bstnode.rigth != nil{
+      bstnode.rigth.Add(value)
     }else{
-      aux = aux.rigth
-    }    
-  }
-  if value <= prev.value{
-    prev.left = NewNode(value)
+      bstnode.rigth = NewNode(value)
+    }
   }else{
-    prev.rigth = NewNode(value)
-  }
-}
-
-func (bst *Bst) Busca(value int) bool{
-  aux := bst.root
-
-  for aux != nil{
-    if value == aux.value{
-      return true
+    if bstnode.left != nil{
+      bstnode.left.Add(value)
     }else{
-      if value < aux.value{
-        aux = aux.left
-      }else{
-        aux = aux.rigth
-      }
+      bstnode.left = NewNode(value)
     }
   }
-  return false
 }
 
-// func (bst *Bst) Print(){
-//   aux := bst.root
-//   for aux != nil{
-//    fmt.Println("Raiz = ", aux.value)
-//     fmt.Println("valores a esquerda")
-//     for aux.left != nil{
-//       aux = aux.left
-//       fmt.Println("valor = ", aux.value)
-//     }
-//     fmt.Println("valores a direita")
-//     if aux.rigth != nil{
-//       aux = aux.rigth
-//       fmt.Println("valor = ", aux.value)
-//     }
-//   }
-// }
+func (bstnode *BstNode) Search(value int) bool{
+  if value == bstnode.value{
+    return true
+  }else if value > bstnode.value{
+    if bstnode.rigth == nil{
+      return false
+    }else{
+      return bstnode.rigth.Search(value)
+    }
+  }else{
+    if bstnode.left == nil{
+      return false
+    }else{
+      return bstnode.left.Search(value)
+    }
+  }
+}
+
+//navegação em arvores
+
+func (bstnode *BstNode) PrintIn(){
+  if bstnode.left != nil{
+    bstnode.left.PrintIn()
+  }
+  fmt.Print(", ", bstnode.value)
+  if bstnode.rigth != nil{
+    bstnode.rigth.PrintIn()
+  }
+}
+
+func (bstnode *BstNode) PrintPre(){
+  fmt.Print(", ", bstnode.value)
+  if bstnode.left != nil{
+    bstnode.left.PrintIn()
+  }
+  if bstnode.rigth != nil{
+    bstnode.rigth.PrintIn()
+  }
+}
+
+func (bstnode *BstNode) PrintPos(){
+  if bstnode.left != nil{
+    bstnode.left.PrintIn()
+  }
+  if bstnode.rigth != nil{
+    bstnode.rigth.PrintIn()
+  }
+  fmt.Print(", ", bstnode.value)
+}
+
+func (bstnode *BstNode) Max() int{
+  if bstnode.rigth != nil{
+    return bstnode.rigth.Max()
+  }else{
+    return bstnode.value
+  }
+}
+
+func (bstnode *BstNode) Min() int{
+  if bstnode.left != nil{
+    return bstnode.left.Min()
+  }else{
+    return bstnode.value
+  }
+}
+
+func (bstnode *BstNode) Remove(value int){
+  
+}
+
+func (bstnode *BstNode) Altura() int{
+  return 1
+}
 
