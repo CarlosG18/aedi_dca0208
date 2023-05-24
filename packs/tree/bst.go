@@ -132,6 +132,19 @@ func IsRepet(v []int) bool{
   return repete
 }
 
-func (bstNode *BstNode) isBst() bool{
-  return false
+func (bstNode *BstNode) IsBst() bool{
+   value := bstnode.value
+  if bstnode.left.value > value {
+    return false
+  }else{
+    return bstnode.left.isBst()
+  }
+
+  if bstnode.rigth.value < value{
+    return false
+  }else{
+    return bstnode.rigth.IsBst()
+  }
+
+  
 }
