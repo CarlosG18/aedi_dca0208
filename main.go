@@ -63,11 +63,13 @@ func main() {
 */
 
 // fazendo testes em arvores
-  vetor := []int{15,10,22,5,11,20,35,2,3,7,14,21,33,37}
-  t := tree.CreateBst(vetor)
+  vetor := []string{"c","a","r","l","o","s"}
+  t := tree.CreateBst_str(vetor)
+  // bst_verify := t.IsBst()
   
   if t != nil{
-    t.PrintIn()
+    t.PrintPos()
+    // fmt.Println(bst_verify)
   }else{
     fmt.Println(t)  
   }
