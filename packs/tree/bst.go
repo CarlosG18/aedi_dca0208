@@ -56,7 +56,7 @@ func (bstnode *BstNode) PrintIn(){
   if bstnode.left != nil{
     bstnode.left.PrintIn()
   }
-  fmt.Print(", ", bstnode.value)
+  fmt.Print(bstnode.value, ", ")
   if bstnode.rigth != nil{
     bstnode.rigth.PrintIn()
   }
@@ -106,3 +106,32 @@ func (bstnode *BstNode) Altura() int{
   return 1
 }
 
+func CreateBst(v []int) *BstNode{
+  repete := IsRepet(v)
+  if repete == false{
+    root := NewNode(v[0])
+    for i:=1; i<len(v); i++{
+      root.Add(v[i])
+    }
+    return root
+  }else{
+    return nil
+  }
+}
+
+func IsRepet(v []int) bool{
+  repete := false
+  for i:=0; i<len(v); i++{
+    for j:=i+1; j<len(v)-1; j++{
+      if v[i] == v[j]{
+        repete = true
+        break
+      }
+    }
+  }
+  return repete
+}
+
+func (bstNode *BstNode) isBst() bool{
+  return false
+}

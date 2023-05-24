@@ -63,8 +63,13 @@ func main() {
 */
 
 // fazendo testes em arvores
-  for i:= 0; i<10; i++{
-    Add_numeros(10,50)
+  vetor := []int{15,10,22,5,11,20,35,2,3,7,14,21,33,37}
+  t := tree.CreateBst(vetor)
+  
+  if t != nil{
+    t.PrintIn()
+  }else{
+    fmt.Println(t)  
   }
 }
 
@@ -110,6 +115,10 @@ func FullArrayRandom(tam int, intervalo int) []int{
   }
   return vetor
 }
+
+// func FullArraySemRepet(tam int) []int{
+  
+// }
 
 func FullArrayCres(tam int) []int{
   vetor := make([]int,tam)
