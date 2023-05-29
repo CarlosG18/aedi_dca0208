@@ -98,25 +98,47 @@ func (bstnode *BstNode) Min() int {
 	}
 }
 
-func (bstnode *BstNode) Remove(value int) {
+func (bstnode *BstNode) Remove(value int) *BstNode {
 	if value < bstnode.value {
-		bstnode.left.Remove(value)
+		bstnode.left = bstnode.left.Remove(value)
 	} else if value > bstnode.value {
-		bstnode.rigth.Remove(value)
+		bstnode.rigth = bstnode.rigth.Remove(value)
 	} else {
-
 		if bstnode.left == nil && bstnode.rigth == nil {
-			fmt.Println(bstnode.value)
-			bstnode = nil
+			return nil
+		} else if bstnode.rigth != nil && bstnode.left == nil {
+			return bstnode.rigth
+		} else if bstnode.left != nil && bstnode.rigth == nil {
+			return bstnode.left
+		} else {
+			bstnode.value = bstnode.rigth.value
+			bstnode.rigth = nil
+			return bstnode
 		}
-		// else if bstnode.rigth != nil && bstnode.left == nil {
-		// 	bstnode = &(*bstnode.rigth)
-		// } else if bstnode.left != nil && bstnode.rigth == nil {
-		// 	bstnode = &(*bstnode.left)
-		// } else {
-
-		// }
 	}
+	return bstnode
+}
+
+func (bstNode *BstNode) Remove(value int) *BstNode {
+	if value < bstNode.value {
+		bstNode.left = bstNode.left.Remove(value)
+	} else if value > bstNode.value {
+		bstNode.right = bstNode.right.Remove(value)
+	} else { //encontramos o nó a ser removido
+		if bstNode.left == nil && bstNode.right == nil { //caso 1: nó folha
+			return nil
+		} else if bstNode.left != nil && bstNode.right == nil { //caso 2: nó com 1 filho (à esquerda)
+			return bstNode.left
+		} else if bstNode.left == nil && bstNode.right != nil { //caso 2: nó com 1 filho (à direita)
+			return bstNode.right
+		} else { //caso 3: nó com 2 filhos
+			maxEsq := bstNode.left.Max()
+			bstNode.value = maxEsq
+			bstNode.left = bstNode.left.Remove(maxEsq)
+			return bstNode
+		}
+	}
+	return bstNode
 }
 
 func (bstnode *BstNode) Altura() int {
