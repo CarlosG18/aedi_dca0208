@@ -9,7 +9,17 @@ import (
 )
 
 func main() {
-
+  arvore := tree.BstNode{}
+  arvore.Add(5)
+  arvore.Add(2)
+  arvore.Add(15)
+  arvore.Add(11)
+  arvore.Add(25)
+  arvore.PrintPre()
+  arvore_rot := arvore.RotRight()
+  arvore_rot.PrintPre()
+  
+  /*
 	v := []int{10, 7, 3, 8, 15, 20}
 	t := tree.CreateBst(v)
 	u := tree.BstNode{}
@@ -24,7 +34,7 @@ func main() {
 	fmt.Println("size da arvore = ", t.Size())
 	t.PrintIn()
 	fmt.Println("size da arvore = ", u.Size())
-	u.PrintIn()
+	u.PrintIn()*/
 
 	/* testes algortitmos de ordenação
 	vetor := FullArrayDecres(10000)
@@ -77,7 +87,7 @@ func main() {
 	fmt.Println("tempo gasto com MergeSort O(logn) = ", end3)
 	fmt.Println("tempo gasto com QuickSort O(nlogn) = ", end4)
 	fmt.Println("tempo gasto com CountingSort O(n) = ", end5)
-	*/
+	
 
 	// fazendo testes em arvores
 	// vetor := []string{"c","a","r","l","o","s"}
@@ -89,9 +99,9 @@ func main() {
 	//   // fmt.Println(bst_verify)
 	// }else{
 	//   fmt.Println(t)
-	// }
+	// }*/
 }
-
+/*
 func Add_numeros(qtd int, intervalo int) {
 	tree := tree.BstNode{}
 	vetor_numeros := FullArrayRandom(qtd, intervalo)
@@ -156,3 +166,275 @@ func FullArrayDecres(tam int) []int {
 	}
 	return vetor
 }
+
+package main
+
+import (
+	"fmt"
+)
+
+type ITree interface {
+	Add(value int) *BstNode
+	Search(value int) bool
+	Min() int
+	Max() int
+	PrintPre()
+	PrintIn()
+	PrintPos()
+	Height() int
+	Remove(value int) *BstNode
+	IsBst() bool
+	Size() int
+	RotRight() *BstNode
+	RotLeft() *BstNode
+	Rebalance() *BstNode
+	UpdateProperties()
+}
+
+type BstNode struct {
+	left   *BstNode
+	value  int
+	height int
+	bf     int
+	right  *BstNode
+}
+
+func NewNode(value int) *BstNode {
+	node := BstNode{}
+	node.value = value
+	node.right = nil
+	node.left = nil
+	node.height = 0
+	node.bf = 0
+	return &node
+}
+
+func (bstNode *BstNode) Add(value int) {
+	if value <= bstNode.value { //insercao à esq
+		if bstNode.left == nil {
+			bstNode.left = NewNode(value)
+		} else {
+			bstNode.left.Add(value)
+		}
+	} else {
+		if bstNode.right == nil {
+			bstNode.right = NewNode(value)
+		} else {
+			bstNode.right.Add(value)
+		}
+	}
+	//bstNode.UpdateProperties()
+	//return bstNode.Rebalance()
+}
+
+/*func (bstNode *BstNode) Search(value int) bool {
+	if value == bstNode.value {
+		return true
+	} else if value < bstNode.value && bstNode.left != nil {
+		return bstNode.left.Search(value)
+	} else if value > bstNode.value && bstNode.right != nil {
+		return bstNode.right.Search(value)
+	} else {
+		return false
+	}
+}
+
+func (bstNode *BstNode) Min() int {
+	if bstNode.left == nil {
+		return bstNode.value
+	} else {
+		return bstNode.left.Min()
+	}
+}
+
+func (bstNode *BstNode) Max() int {
+	if bstNode.right == nil {
+		return bstNode.value
+	} else {
+		return bstNode.right.Max()
+	}
+}
+
+func (bstNode *BstNode) PrintPre() {
+	fmt.Print(bstNode.value, ", ")
+	if bstNode.left != nil {
+		bstNode.left.PrintPre()
+	}
+	if bstNode.right != nil {
+		bstNode.right.PrintPre()
+	}
+}
+
+func (bstNode *BstNode) PrintIn() {
+	if bstNode.left != nil {
+		bstNode.left.PrintIn()
+	}
+	fmt.Print(bstNode.value, ", ")
+	if bstNode.right != nil {
+		bstNode.right.PrintIn()
+	}
+}
+
+func (bstNode *BstNode) PrintPos() {
+	if bstNode.left != nil {
+		bstNode.left.PrintPos()
+	}
+	if bstNode.right != nil {
+		bstNode.right.PrintPos()
+	}
+	fmt.Print(bstNode.value, ", ")
+}
+
+func (bstNode *BstNode) Height() int {
+	hBasedOnLeft := 0
+	hBasedOnRight := 0
+	if bstNode.left != nil {
+		hBasedOnLeft = 1 + bstNode.left.Height()
+	}
+	if bstNode.right != nil {
+		hBasedOnRight = 1 + bstNode.right.Height()
+	}
+	if hBasedOnLeft >= hBasedOnRight {
+		return hBasedOnLeft
+	} else {
+		return hBasedOnRight
+	}
+}
+/*
+func (bstNode *BstNode) Remove(value int) *BstNode {
+	if value < bstNode.value {
+		bstNode.left = bstNode.left.Remove(value)
+	} else if value > bstNode.value {
+		bstNode.right = bstNode.right.Remove(value)
+	} else { //encontramos o nó a ser removido
+		if bstNode.left == nil && bstNode.right == nil { //caso 1: nó folha
+			return nil
+		} else if bstNode.left != nil && bstNode.right == nil { //caso 2: nó com 1 filho (à esquerda)
+			return bstNode.left
+		} else if bstNode.left == nil && bstNode.right != nil { //caso 2: nó com 1 filho (à direita)
+			return bstNode.right
+		} else { //caso 3: nó com 2 filhos
+			maxEsq := bstNode.left.Max()
+			bstNode.value = maxEsq
+			bstNode.left = bstNode.left.Remove(maxEsq)
+			return bstNode
+		}
+	}
+	bstNode.UpdateProperties()
+	return bstNode.Rebalance()
+}
+
+func (bstNode *BstNode) IsBst() bool {
+	if bstNode.left != nil {
+		if bstNode.value > bstNode.left.value {
+			return bstNode.left.IsBst()
+		} else {
+			return false
+		}
+	}
+	if bstNode.right != nil {
+		if bstNode.value < bstNode.right.value {
+			return bstNode.right.IsBst()
+		} else {
+			return false
+		}
+	}
+	return true
+}
+
+func (bstNode *BstNode) RotRight() *BstNode {
+  left := bstNode.left
+	bstNode.left = left.right
+	left.right = bstNode
+	//bstNode.UpdateProperties()
+	//left.UpdateProperties()
+	return left
+}
+
+func (bstNode *BstNode) RotLeft() *BstNode {
+	right := bstNode.right
+	bstNode.right = right.left
+	right.left = bstNode
+	//bstNode.UpdateProperties()
+	//right.UpdateProperties()
+	return right
+}
+
+// Update Height and BalanceFactor
+func (bstNode *BstNode) UpdateProperties() {
+	//atualizar altura
+	heightRight := 0
+	heightLeft := 0
+	if bstNode.right == nil && bstNode.left == nil {
+		bstNode.height = 0
+	} else {
+		if bstNode.right != nil {
+			heightRight = bstNode.right.height
+		}
+		if bstNode.left != nil {
+			heightLeft = bstNode.left.height
+		}
+		if heightRight > heightLeft {
+			bstNode.height = 1 + heightRight
+		} else {
+			bstNode.height = 1 + heightLeft
+		}
+	}
+	bstNode.bf = heightRight - heightLeft
+}
+
+func (bstNode *BstNode) Rebalance() *BstNode {
+	if bstNode.bf <= -2 { //LEFT
+		if bstNode.left.bf == -1 { //LEFT-LEFT
+			return bstNode.RebalanceLeftLeft()
+		} else if bstNode.left.bf == 0 { //LEFT-NEUTRAL
+			return bstNode.RebalanceLeftLeft()
+		} else { //LEFT-RIGHT
+			return bstNode.RebalanceLeftRight()
+		}
+	} else if bstNode.bf >= 2 { //RIGHT
+		if bstNode.right.bf == 1 { //RIGHT-RIGHT
+			return bstNode.RebalanceRightRight()
+		} else if bstNode.right.bf == 0 { //RIGHT-NEUTRAL
+			return bstNode.RebalanceRightRight()
+		} else { //RIGHT-LEFT
+			return bstNode.RebalanceRightLeft()
+		}
+	}
+	return bstNode
+}
+
+func (bstNode *BstNode) RebalanceRightRight() *BstNode {
+	return bstNode.RotLeft()
+}
+
+func (bstNode *BstNode) RebalanceRightLeft() *BstNode {
+	bstNode.right = bstNode.right.RotRight()
+	return bstNode.RebalanceRightRight()
+}
+
+func (bstNode *BstNode) CheckBF() bool {
+	if bstNode.bf > -2 && bstNode.bf < 2 {
+		if bstNode.left != nil {
+			return bstNode.left.CheckBF()
+		}
+		if bstNode.right != nil {
+			return bstNode.right.CheckBF()
+		}
+		return true
+	} else {
+		return false
+	}
+}
+
+func main() {
+  arvore := BstNode{}
+  arvore.Add(5)
+  arvore.Add(2)
+  arvore.Add(15)
+  arvore.Add(11)
+  arvore.Add(25)
+  arvore.PrintPre()
+  arvore_rot := arvore.RotRight()
+  arvore_rot.PrintPre()
+}*/

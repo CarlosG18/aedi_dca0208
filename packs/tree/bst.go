@@ -1,5 +1,5 @@
 package tree
-
+/*
 import "fmt"
 
 type BstNode struct {
@@ -178,4 +178,4 @@ func (bstNode *BstNode) IsBst() bool {
 		}
 	}
 	return true
-}
+}*/

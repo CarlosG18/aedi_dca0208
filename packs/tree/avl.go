@@ -5,17 +5,42 @@ import "fmt"
 type BstNode struct {
 	left  *BstNode
 	value int
+	bf int
+	height int
 	rigth *BstNode
 }
 
 func NewNode(value int) *BstNode {
 	node := BstNode{}
-	node.left = nil
-	node.rigth = nil
 	node.value = value
+	node.bf = 0
+	node.height = 0
 	return &node
 }
 
+func (bstnode *BstNode) UpdateProp(){
+  //update propriedades 
+}
+
+func (bstnode *BstNode) RotLeft() *BstNode{
+  rigth := bstnode.rigth
+  bstnode.rigth = rigth.left
+  rigth.left = bstnode
+  return rigth
+}
+
+func (bstnode *BstNode) RotRight() *BstNode{
+  left := bstnode.left
+  if left.rigth != nil{
+    bstnode.left = left.rigth
+  }else{
+    bstnode.left = nil
+  }
+  left.rigth = bstnode
+  return left
+}
+
+/*  fazer ajustes */
 func (bstnode *BstNode) Add(value int) {
 	if value > bstnode.value {
 		if bstnode.rigth != nil {
@@ -101,14 +126,14 @@ func (bstNode *BstNode) Remove(value int) *BstNode {
 	if value < bstNode.value {
 		bstNode.left = bstNode.left.Remove(value)
 	} else if value > bstNode.value {
-		bstNode.right = bstNode.right.Remove(value)
+		bstNode.rigth = bstNode.rigth.Remove(value)
 	} else { //encontramos o nó a ser removido
-		if bstNode.left == nil && bstNode.right == nil { //caso 1: nó folha
+		if bstNode.left == nil && bstNode.rigth == nil { //caso 1: nó folha
 			return nil
-		} else if bstNode.left != nil && bstNode.right == nil { //caso 2: nó com 1 filho (à esquerda)
+		} else if bstNode.left != nil && bstNode.rigth == nil { //caso 2: nó com 1 filho (à esquerda)
 			return bstNode.left
-		} else if bstNode.left == nil && bstNode.right != nil { //caso 2: nó com 1 filho (à direita)
-			return bstNode.right
+		} else if bstNode.left == nil && bstNode.rigth != nil { //caso 2: nó com 1 filho (à direita)
+			return bstNode.rigth
 		} else { //caso 3: nó com 2 filhos
 			maxEsq := bstNode.left.Max()
 			bstNode.value = maxEsq
