@@ -4,11 +4,11 @@ Os Algoritmos de ordenação possuem um tempo de Desempenho variável, pois depe
 
 | Algoritmo | Melhor caso O | Pior caso |
 |:---:|:---:|:---:|
-| BubbleSort | O() | O() |
-| SelectionSort | O() | O() |
-| InsertionSort | O() | O() |
-| MergeSort | O() | O() |
-| QuickSort | O() | O() |
+| BubbleSort | O(n) | O(n²) |
+| SelectionSort | O(n) | O(n²) |
+| InsertionSort | O(n²) | O(n²) |
+| MergeSort | O(nlogn) | O(nlogn) |
+| QuickSort | O(nlogn) | O(n²) |
 
 para casos em que o vetor já está ordenado `crescentemente/decrescentemente`
 
