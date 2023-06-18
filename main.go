@@ -1,23 +1,23 @@
 package main
 
 import (
-	"fmt"
+	//"fmt"
 	//"main/packs/sort"
 	"main/packs/tree"
-	"math/rand"
+	//"math/rand"
 	//"time"
 )
 
 func main() {
-  arvore := tree.BstNode{}
-  arvore.Add(5)
-  arvore.Add(2)
-  arvore.Add(15)
-  arvore.Add(11)
-  arvore.Add(25)
-  arvore.PrintPre()
-  arvore_rot := arvore.RotRight()
-  arvore_rot.PrintPre()
+  arvore := tree.NewNode(20)
+  arvore = arvore.Add(29)
+  arvore = arvore.Add(35)
+  arvore = arvore.Add(51)
+  //arvore = arvore.Add(13)
+  //arvore = arvore.Add(25)
+  //arvore = arvore.Add(18)
+  //arvore = arvore.Add(19)
+  //arvore.PrintPre()
   
   /*
 	v := []int{10, 7, 3, 8, 15, 20}

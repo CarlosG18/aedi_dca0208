@@ -10,6 +10,16 @@ type BstNode struct {
 	rigth *BstNode
 }
 
+func (bstnode *BstNode) Teste(){
+  fmt.Println("antes: ")
+  bstnode.PrintPre()
+  bstnode = bstnode.LeftRight()
+  fmt.Println("")
+  fmt.Println("")
+  fmt.Println("depois: ")
+  bstnode.PrintPre()
+}
+
 func NewNode(value int) *BstNode {
 	node := BstNode{}
 	node.value = value
@@ -19,29 +29,66 @@ func NewNode(value int) *BstNode {
 }
 
 func (bstnode *BstNode) UpdateProp(){
-  //update propriedades 
+  alt_dir := 0
+  alt_esq := 0
+  if bstnode.left != nil{
+    alt_esq = bstnode.left.Altura()
+  }
+  if bstnode.rigth != nil{
+    alt_dir = bstnode.rigth.Altura()
+  }
+  bstnode.bf = alt_dir - alt_esq
+  bstnode.height = bstnode.Altura()
 }
 
 func (bstnode *BstNode) RotLeft() *BstNode{
   rigth := bstnode.rigth
   bstnode.rigth = rigth.left
   rigth.left = bstnode
+  bstnode.UpdateProp()
+  rigth.UpdateProp()
   return rigth
+}
+
+func (bstnode *BstNode) LeftLeft() *BstNode{
+  return bstnode.RotRight()
+}
+
+func (bstnode *BstNode) Left_Neutral() *BstNode{
+  return bstnode.RotRight()
+}
+
+func (bstnode *BstNode) LeftRight() *BstNode{
+  left := bstnode.left
+  bstnode.left = left.RotLeft()
+  return bstnode.RotRight()
 }
 
 func (bstnode *BstNode) RotRight() *BstNode{
   left := bstnode.left
-  if left.rigth != nil{
-    bstnode.left = left.rigth
-  }else{
-    bstnode.left = nil
-  }
+  bstnode.left = left.rigth
   left.rigth = bstnode
+  bstnode.UpdateProp()
+  left.UpdateProp()
   return left
 }
 
+func (bstnode *BstNode) Right_Neutral() *BstNode{
+  return bstnode.RotLeft()
+}
+
+func (bstnode *BstNode) RightRight() *BstNode{
+  return bstnode.RotLeft()
+}
+
+func (bstnode *BstNode) RightLeft() *BstNode{
+  rigth := bstnode.rigth
+  bstnode.rigth = rigth.RotRight()
+  return bstnode.RotLeft()
+}
+
 /*  fazer ajustes */
-func (bstnode *BstNode) Add(value int) {
+func (bstnode *BstNode) Add(value int) *BstNode{
 	if value > bstnode.value {
 		if bstnode.rigth != nil {
 			bstnode.rigth.Add(value)
@@ -55,6 +102,30 @@ func (bstnode *BstNode) Add(value int) {
 			bstnode.left = NewNode(value)
 		}
 	}
+	bstnode.UpdateProp()
+	return bstnode.Rebalance()
+}
+
+func (bstnode *BstNode) Rebalance() *BstNode{
+  if bstnode.bf <= -2{ //LEFT
+    if bstnode.left.bf == 0{
+      return bstnode.Left_Neutral()
+    }else if bstnode.left.bf == -1{
+      return bstnode.LeftLeft()
+    }else{
+      return bstnode.LeftRight()
+    }
+  }else if bstnode.bf >= 2{ //RIGHT
+    if bstnode.rigth.bf == 0{
+      return bstnode.Right_Neutral()
+    }else if bstnode.left.bf == -1{
+      return bstnode.RightRight()
+    }else{
+      return bstnode.RightLeft()
+    }
+  }else{
+    return bstnode
+  }
 }
 
 func (bstnode *BstNode) Search(value int) bool {
@@ -87,7 +158,9 @@ func (bstnode *BstNode) PrintIn() {
 }
 
 func (bstnode *BstNode) PrintPre() {
-	fmt.Print(", ", bstnode.value)
+	fmt.Print(", ", bstnode.value, " bf = " , bstnode.bf, " altura = ", bstnode.height)
+	fmt.Println()
+	
 	if bstnode.left != nil {
 		bstnode.left.PrintPre()
 	}
@@ -145,7 +218,19 @@ func (bstNode *BstNode) Remove(value int) *BstNode {
 }
 
 func (bstnode *BstNode) Altura() int {
-	return 1
+	alt_base_dir := 0
+	alt_base_esq := 0
+	if bstnode.left != nil{
+	  alt_base_esq = 1 + bstnode.left.Altura()
+	}
+	if bstnode.rigth != nil{
+	  alt_base_dir = 1 + bstnode.rigth.Altura()
+	}
+	if alt_base_dir > alt_base_esq{
+	  return alt_base_dir
+	}else{
+	  return alt_base_esq
+	}
 }
 
 func (bstnode *BstNode) Size() int {
