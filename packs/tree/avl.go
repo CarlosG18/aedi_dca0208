@@ -95,13 +95,13 @@ func (bstnode *BstNode) RightLeft() *BstNode {
 func (bstnode *BstNode) Add(value int) *BstNode {
 	if value > bstnode.value {
 		if bstnode.rigth != nil {
-			bstnode.rigth.Add(value)
+			bstnode.rigth = bstnode.rigth.Add(value)
 		} else {
 			bstnode.rigth = NewNode(value)
 		}
 	} else {
 		if bstnode.left != nil {
-			bstnode.left.Add(value)
+			bstnode.left = bstnode.left.Add(value)
 		} else {
 			bstnode.left = NewNode(value)
 		}
