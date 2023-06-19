@@ -1,7 +1,7 @@
 package main
 
 import (
-	//"fmt"
+	"fmt"
 	//"main/packs/sort"
 	"main/packs/tree"
 	//"math/rand"
@@ -9,32 +9,42 @@ import (
 )
 
 func main() {
-  arvore := tree.NewNode(20)
-  arvore = arvore.Add(29)
-  arvore = arvore.Add(35)
-  arvore = arvore.Add(51)
-  //arvore = arvore.Add(13)
-  //arvore = arvore.Add(25)
-  //arvore = arvore.Add(18)
-  //arvore = arvore.Add(19)
-  //arvore.PrintPre()
-  
-  /*
-	v := []int{10, 7, 3, 8, 15, 20}
-	t := tree.CreateBst(v)
-	u := tree.BstNode{}
-	u.Add(10)
-	u.Add(7)
-	u.Add(3)
-	u.Add(8)
-	u.Add(20)
-	t.Remove(3)
-	t.Remove(20)
-	u.Remove(3)
-	fmt.Println("size da arvore = ", t.Size())
-	t.PrintIn()
-	fmt.Println("size da arvore = ", u.Size())
-	u.PrintIn()*/
+	arvore := tree.NewNode(0)
+
+	for i := 1; i < 250; i++ {
+		arvore = arvore.Add(i)
+	}
+
+	fmt.Println("altura da arvore = ", arvore.Get_height())
+	arvore.PrintPre()
+
+	// 	arvore := tree.NewNode(20)
+	// 	arvore = arvore.Add(29)
+	// 	arvore = arvore.Add(35)
+	// 	arvore = arvore.Add(51)
+	// 	arvore = arvore.Add(13)
+	// 	arvore = arvore.Add(25)
+	// 	arvore = arvore.Add(18)
+	// 	arvore = arvore.Add(19)
+	// 	arvore.PrintPre()
+	//arv_rotdir.PrintPre()
+
+	/*
+		v := []int{10, 7, 3, 8, 15, 20}
+		t := tree.CreateBst(v)
+		u := tree.BstNode{}
+		u.Add(10)
+		u.Add(7)
+		u.Add(3)
+		u.Add(8)
+		u.Add(20)
+		t.Remove(3)
+		t.Remove(20)
+		u.Remove(3)
+		fmt.Println("size da arvore = ", t.Size())
+		t.PrintIn()
+		fmt.Println("size da arvore = ", u.Size())
+		u.PrintIn()*/
 
 	/* testes algortitmos de ordenação
 	vetor := FullArrayDecres(10000)
@@ -87,7 +97,7 @@ func main() {
 	fmt.Println("tempo gasto com MergeSort O(logn) = ", end3)
 	fmt.Println("tempo gasto com QuickSort O(nlogn) = ", end4)
 	fmt.Println("tempo gasto com CountingSort O(n) = ", end5)
-	
+
 
 	// fazendo testes em arvores
 	// vetor := []string{"c","a","r","l","o","s"}
@@ -101,6 +111,7 @@ func main() {
 	//   fmt.Println(t)
 	// }*/
 }
+
 /*
 func Add_numeros(qtd int, intervalo int) {
 	tree := tree.BstNode{}
