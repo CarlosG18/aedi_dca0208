@@ -32,6 +32,7 @@ func (bstnode *BstNode) Get_height() int {
 	return bstnode.height
 }
 
+/* forma mais cara computacionalmente pq percorre toda a arvore para calcular a altura*/
 func (bstnode *BstNode) UpdateProp() {
 	alt_dir := 0
 	alt_esq := 0
@@ -43,6 +44,11 @@ func (bstnode *BstNode) UpdateProp() {
 	}
 	bstnode.bf = alt_dir - alt_esq
 	bstnode.height = bstnode.Altura()
+}
+
+/* implementar a função UpdateProp usando a propriedade de height de cada nó == é melhor computacionalmente*/
+func (bstnode *BstNode) UpdateProp() {
+	
 }
 
 func (bstnode *BstNode) RotLeft() *BstNode {
