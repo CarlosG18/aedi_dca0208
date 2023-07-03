@@ -3,13 +3,28 @@ package main
 import (
 	//"fmt"
 	//"main/packs/sort"
-	"main/packs/tree"
+	"main/packs/hash"
 	//"math/rand"
 	//"time"
 )
 
 func main() {
-	arvore := tree.NewNode(20)
+	table := hash.Init(10)
+	table.Add(1, "carlos")
+	table.Add(2, "edu")
+	table.Add(11, "jurema")
+	table.Add(32, "valdir")
+	//tupla_carlos := table.Get(1)
+	table.Print_table()
+	table.Remove(11)
+	table.Print_table()
+	//table.Add(11, "jurema")
+	table.Print_table()
+	//temKey := table.Search(11)
+	//fmt.Println("tem a key 11? ", temKey)
+}
+	
+	/*arvore := tree.NewNode(20)
 	arvore = arvore.Add(29)
 	arvore = arvore.Add(35)
 	arvore = arvore.Add(51)
@@ -19,7 +34,7 @@ func main() {
 	arvore = arvore.Add(19)
 	arvore.PrintPre()
 
-	/*
+	
 		v := []int{10, 7, 3, 8, 15, 20}
 		t := tree.CreateBst(v)
 		u := tree.BstNode{}
@@ -34,9 +49,9 @@ func main() {
 		fmt.Println("size da arvore = ", t.Size())
 		t.PrintIn()
 		fmt.Println("size da arvore = ", u.Size())
-		u.PrintIn()*/
+		u.PrintIn()
 
-	/* testes algortitmos de ordenação
+	 testes algortitmos de ordenação
 	vetor := FullArrayDecres(10000)
 	fmt.Println("vetor = ", vetor)
 	fmt.Println()
@@ -99,10 +114,10 @@ func main() {
 	//   // fmt.Println(bst_verify)
 	// }else{
 	//   fmt.Println(t)
-	// }*/
+	// }
 }
 
-/*
+
 func Add_numeros(qtd int, intervalo int) {
 	tree := tree.BstNode{}
 	vetor_numeros := FullArrayRandom(qtd, intervalo)
@@ -166,4 +181,4 @@ func FullArrayDecres(tam int) []int {
 		vetor[i] = (tam - 1) - i
 	}
 	return vetor
-}
+}*/
