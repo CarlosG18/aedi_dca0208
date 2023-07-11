@@ -36,3 +36,5 @@ Implementações referente a disciplina de Estrutura de Dados I - DCA0208 - UFRN
 
 2. [tabelas Hash](https://github.com/CarlosG18/edi_dca0208/tree/main/conteudos/hash/hash.md)
 
+3. [HEAP](https://github.com/CarlosG18/edi_dca0208/tree/main/conteudos/heap/heap.md)
+
