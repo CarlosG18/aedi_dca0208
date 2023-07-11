@@ -8,9 +8,11 @@ heap é uma forma de implementar a estrutura de dados da fila de prioridades. co
 
 1. **MaxHeap**: em uma maxHeap os elementos "pais" são sempre maiores que seus elementos filhos de uma forma recursiva. vamos para um exemplo para entendermos melhor. analisamos a arvore binária abaixo:
 
-![maxheap](https://github.com/CarlosG18/edi_dca0208/tree/main/conteudos/heap/maxheap.png)
+![maxheap](https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/maxheap.png)
 
 2. **MinHeap**:
+
+![minheap](https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/minheap.png)
 
 ## Heap valida?
 
