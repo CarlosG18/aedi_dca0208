@@ -14,6 +14,9 @@ heap é uma forma de implementar a estrutura de dados da fila de prioridades. co
 
 ![minheap](https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/minheap.png)
 
+<img src="https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/minheap.png" width="300">
+
+
 ## Heap valida?
 
 ## forma de implementação
