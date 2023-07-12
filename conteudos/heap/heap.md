@@ -24,7 +24,7 @@ nela podemos ver que qualquer nó pai possui filhos com valores maiores. por exe
 
 ## Heap valida?
 
-como sabemos se uma heap é válida? bom como já vimos anteriormente, temos dois tipos de heap, `MaxHeap` e `MinHeap`, caso algum nó filho seja contrário as definições de cada tipo de heap, esta heap não é considerada valida. já que uma heap é construida como uma árvore binária, caso um nó filho possua dois nós pais, que quebra a definição de árvore binária, também é considerado como uma heap não valida.
+como sabemos se uma heap é válida? bom como já vimos anteriormente, temos dois tipos de heap, `MaxHeap` e `MinHeap`, caso algum nó filho seja contrário as definições de cada tipo de heap, esta heap não é considerada valida. já que uma heap é construida como uma árvore binária, caso um nó filho possua dois nós pais, que quebra a definição de árvore binária, também é considerado como uma heap não valida. outro fator é determinante para verificar se uma heap é valida, é a ordem em que os elementos são inseridos, ou seja, para que uma heap seja valida a inserção na arvore binaria deve acontecer da esquerda para a direita.
 
 ## forma de implementação
 
@@ -74,4 +74,4 @@ ele = [73, 55, 64, 21, 44, 19]
 
 agora vamos realizar a operação de `Add(72)` em nossa MaxHeap.
 
-![](https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/giphy.gif)
+![](https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/Add(36).gif)
