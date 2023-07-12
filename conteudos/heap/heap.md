@@ -59,3 +59,19 @@ type Heap interface{
 ## funcionamento da Heap
 
 vamos agora expor como seria o funcionamento passo a passo de uma heap.
+
+vamos supor que já temos uma MaxHeap dada pela imagem abaixo:
+
+<p align="center">
+  <img src="https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/minheap.png" alt="MinHeap">
+</p>
+
+como podemos ver na imagem, cada elemento possui seu índice que conresponde ao vetor definido na estrutura da Heap. o vetor `ele` da nossa MaxHeap ficará assim:
+
+```go 
+ele = [73, 55, 64, 21, 44, 19]
+```
+
+agora vamos realizar a operação de `Add(72)` em nossa MaxHeap.
+
+![função add(72)](https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/add.mp4)
