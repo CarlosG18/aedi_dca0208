@@ -74,6 +74,17 @@ ele = [73, 55, 64, 21, 44, 19]
 
 agora vamos realizar a operação de `Add(72)` em nossa MaxHeap.
 
-![](https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/Add(36).gif)
+agora vamos ver como a nossa MaxHeap se comporta ao executarmos a função `poll()`:
 
-<img src="https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/Add(36).gif" alt="MinHeap" width="400">
+<p align="center">
+  <img src="https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/Add(36).gif" alt="gif_poll" width="700">
+</p>
+
+como observado no gif, reservamos o valor da raiz da nossa MaxHeap colocando em uma variavel auxiliar chamada `Topo`. apos isso, devemos colocar o ultimo elemento para o lugar da raiz. com isso realizado, precisamos verificar recursivamente qual o maior nó filho e realizar a troca. a logica inversa ocorre em uma MinHeap, ou seja, precisamos verificar o menor valor entre os nós filhos e realizar a troca. não havendo mais a possibilidade de troca (o elemento esta no seu local correto) retornamos a variavel `Topo`. 
+
+***dicas para a implementação da função poll()***:
+- para obter o indicie dos filhos de um determinado nó, basta obter o index do nó pai e os index dos nos filhos se darão pela aplicação da seguinte formula:
+```text
+  index_nó_esquerdo = 2 * index_pai + 1
+  index_nó_direito = 2 * index_pai + 2
+```
