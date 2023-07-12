@@ -79,3 +79,8 @@ agora vamos realizar a operação de `Add(72)` em nossa MaxHeap.
 <p align="center">
   <img src="https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/add(72).gif" alt="MinHeap">
 </p>
+
+<video controls>
+  <source src="https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/add.mp4" type="video/mp4">
+  Seu navegador não suporta a tag de vídeo.
+</video>
