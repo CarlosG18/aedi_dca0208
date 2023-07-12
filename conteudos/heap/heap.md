@@ -58,12 +58,10 @@ type Heap interface{
 
 ## funcionamento da Heap
 
-vamos agora expor como seria o funcionamento passo a passo de uma heap.
-
-vamos supor que já temos uma MaxHeap dada pela imagem abaixo:
+vamos agora expor como seria o funcionamento passo a passo de uma heap. vamos supor que já temos uma MaxHeap e que foram adicionados elementos aleatorios (respeitando sua regra) dada pela imagem abaixo:
 
 <p align="center">
-  <img src="https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/minheap.png" alt="MinHeap">
+  <img src="https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/exemplo.png" alt="exemplo_heap">
 </p>
 
 como podemos ver na imagem, cada elemento possui seu índice que conresponde ao vetor definido na estrutura da Heap. o vetor `ele` da nossa MaxHeap ficará assim:
@@ -71,13 +69,26 @@ como podemos ver na imagem, cada elemento possui seu índice que conresponde ao 
 ```go 
 ele = [73, 55, 64, 21, 44, 19]
 ```
-
+### função Add()
 agora vamos realizar a operação de `Add(72)` em nossa MaxHeap.
 
+<p align="center">
+  <img src="https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/add(72).gif" alt="gif_add(72)" width="700">
+</p>
+
+na função `Add()` o elemento a ser inserido será colocado no final da arvore binaria. apos isso ele flutuará para sua posição correta, fazendo a comparação com o seu nó pai e se ele for maior a troca será realizada, caso contrário, a posição já está correta.
+
+***dicas para a implementação da função Add()***:
+- para obter o indicie do pai de um determinado nó, basta usar a seguinte formula:
+```text
+  index_nó_pai = (index - 1)/2
+```
+
+### função Poll()
 agora vamos ver como a nossa MaxHeap se comporta ao executarmos a função `poll()`:
 
 <p align="center">
-  <img src="https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/Add(36).gif" alt="gif_poll" width="700">
+  <img src="https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/heap/poll.gif" alt="gif_poll" width="700">
 </p>
 
 como observado no gif, reservamos o valor da raiz da nossa MaxHeap colocando em uma variavel auxiliar chamada `Topo`. apos isso, devemos colocar o ultimo elemento para o lugar da raiz. com isso realizado, precisamos verificar recursivamente qual o maior nó filho e realizar a troca. a logica inversa ocorre em uma MinHeap, ou seja, precisamos verificar o menor valor entre os nós filhos e realizar a troca. não havendo mais a possibilidade de troca (o elemento esta no seu local correto) retornamos a variavel `Topo`. 
