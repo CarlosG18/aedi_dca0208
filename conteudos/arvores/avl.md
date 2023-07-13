@@ -6,7 +6,9 @@ uma árvore AVL é uma árvore de busca binária que possui todos os seus nós b
 
 o fator de Balanço é definido como a diferença entre a altura da sub-árvore direita menos a altura da sub-árvore esquerda. com isso, temos as seguintes interpretações para o valor do fator de Balanço:
 
-![exemplo de avl balanceada](https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/arvores/exemplo_avl.png)
+<p align="center">
+  <img src="https://github.com/CarlosG18/edi_dca0208/blob/main/conteudos/arvores/exemplo_avl.png" alt="exemple_avl" width="500">
+</p>
 
 nesta arvore árvore podemos observar valores para o fator de balanço que estão na faixa de `-1 < FB < 1`. uma arvore que possui todos os nós com fator de balanço nessa faixa é considerada uma árvore AVL balanceada. outro fato importante a levantar é que todos os nós folhas possuem o `fator de balanço` e a `altura` iguais a zero.
 
