@@ -32,7 +32,7 @@ Implementações referente a disciplina de Estrutura de Dados I - DCA0208 - UFRN
 
 ## unidade 3 -
 
-1. [arvores AVL]()
+1. [arvores AVL](https://github.com/CarlosG18/edi_dca0208/tree/main/conteudos/arvores/avl.md)
 
 2. [tabelas Hash](https://github.com/CarlosG18/edi_dca0208/tree/main/conteudos/hash/hash.md)
 
